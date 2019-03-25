@@ -4,13 +4,29 @@
 
 
 <div class="user_info">
+  <h3>User Info</h3>
   <div class="user_address">
     Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %>
   </div>
   <div class="user_dob">
-    Date of Birth: <%= @user.dob %>
+    Date of Birth: <%= Date.parse(@user.dob.to_s) %>
   </div>
   <div class="token_balance">
     Token Balance: <%= @user.token_balance %>
   </div>
+  <div class="dogs">
+    <h3>Dogs</h3>
+    <% @user.dogs.each do |dog| %>
+      <%= link_to dog.name, dog_path(dog.id) %>
+    <% end %>
+  </div><br>
+</div>
+
+<div class="edit_user">
+  <%= link_to "Edit", "/users/#{@user.id}/edit" %>
+</div><br>
+
+<!-- CHECK TO SEE IF THIS WORKS WITH TEST DATA -->
+<div class="delete_user">
+  <%= button_to "Delete", "/login", {method: :destroy}%>
 </div>
