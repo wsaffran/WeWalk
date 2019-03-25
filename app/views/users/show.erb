@@ -1,0 +1,16 @@
+<div class="show_title">
+  <h1><%= @user.name %></h1>
+</div>
+
+
+<div class="user_info">
+  <div class="user_address">
+    Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %>
+  </div>
+  <div class="user_dob">
+    Date of Birth: <%= @user.dob %>
+  </div>
+  <div class="token_balance">
+    Token Balance: <%= @user.token_balance %>
+  </div>
+</div>

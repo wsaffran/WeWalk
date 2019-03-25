@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_142020) do
+ActiveRecord::Schema.define(version: 2019_03_25_185151) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer "walker_id"
-    t.integer "walkee_id"
     t.integer "dog_id"
     t.date "appointment_date"
     t.integer "walk_duration"
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "appointment_time"
   end
 
   create_table "dogs", force: :cascade do |t|
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_03_25_142020) do
     t.string "care_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
