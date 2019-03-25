@@ -1,0 +1,27 @@
+<%= form_for @appointment do |f| %>
+
+  <%= f.label :walker_id %>
+  <%= f.text_field :walker_id %><br>
+
+  <%= f.label :dog_id %>
+  <%= f.text_field :dog_id %><br>
+
+  <%= f.label :appointment_date %>
+  <%= f.date_field :appointment_date %><br>
+
+  <%= f.label :walk_duration %>
+  <%= f.radio_button :walk_duration, 30 %>30 minutes
+  <%= f.radio_button :walk_duration, 60 %>60 minutes
+  <%= f.radio_button :walk_duration, 90 %>90 minutes <br>
+
+  <%= f.label :notes %>
+  <%= f.text_area :notes %><br>
+
+  <%= f.label :appointment_time %>
+  <%= f.number_field :appointment_time %><br>
+
+
+  <%= f.submit %>
+
+
+<% end %>
