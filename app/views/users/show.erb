@@ -9,7 +9,9 @@
     Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %>
   </div>
   <div class="user_dob">
-    Date of Birth: <%= Date.parse(@user.dob.to_s) %>
+    <% if @user.dob != nil %>
+      Date of Birth: <%= Date.parse(@user.dob.to_s) %>
+    <% end %>
   </div>
   <div class="token_balance">
     Token Balance: <%= @user.token_balance %>
