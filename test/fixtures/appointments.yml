@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  walker_id: 1
+  walkee_id: 1
+  dog_id: 1
+  appointment_date: 2019-03-25
+  walk_duration: 1
+  notes: MyString
+
+two:
+  walker_id: 1
+  walkee_id: 1
+  dog_id: 1
+  appointment_date: 2019-03-25
+  walk_duration: 1
+  notes: MyString
