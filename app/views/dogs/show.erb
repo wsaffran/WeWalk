@@ -1,0 +1,11 @@
+<h1><%= @dog.name %>'s Page</h1>
+
+<ul>
+  <li>Name: <%= @dog.name %></li>
+  <li>Owner: <%= link_to @dog.user.name, 'user/#{@dog.user.id}' %></li>
+  <li>Breed: <%= @dog.breed %></li>
+  <li>Age: <%= @dog.age %></li>
+  <li>Hypo Allergenic: <%= @dog.hypo_allergenic %></li>
+  <li>Care Information: <%= @dog.care_info %></li>
+
+</ul>
