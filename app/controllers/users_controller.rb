@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
   def show
-    @user = User.find(params[:id])
+    find_user
     render :show
   end
 
@@ -23,19 +23,25 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    find_user
     render :edit
   end
 
   def update
-    @user = User.create(user_params)
-    session[:user_id] = @user.id
-    redirect_to user_path(@user.id)
+    find_user
+    # @user.update(user_params)
+    # session[:user_id] = @user.id
+    if @user.update(user_params)
+      @user.update(user_params)
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+    find_user
+     @user.destroy
     redirect_to "/"
   end
 
@@ -43,6 +49,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :password, :address, :city, :state, :zip_code, :dob)
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 
 end

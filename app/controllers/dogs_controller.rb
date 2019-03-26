@@ -8,6 +8,7 @@ class DogsController < ApplicationController
   def create
     users
     @dog = Dog.new(dog_params)
+    @dog.user_id = current_user.id
     if @dog.valid?
       @dog.save
       session[:dog_id] = @dog.id
@@ -40,10 +41,16 @@ class DogsController < ApplicationController
     find_dog
     @dog.update(dog_params)
     if @dog.valid?
-      redirect_to dog_pat(@dog)
+      @dog.save
+      redirect_to dog_path(@dog.id)
     else
-      flash[:errors] = @dog.errors.full_messages
+      render :edit
     end
+    # if @dog.valid?
+    #   redirect_to dog_path(@dog)
+    # else
+    #   flash[:errors] = @dog.errors.full_messages
+    # end
   end
 
   private
@@ -53,7 +60,7 @@ class DogsController < ApplicationController
   end
 
   def dog_params
-    params.require(:dog).permit(:name, :breed, :age, :hypo_allergenic, :care_info, :user_id)
+    params.require(:dog).permit(:name, :breed, :age, :hypo_allergenic, :care_info)
   end
 
   def users
