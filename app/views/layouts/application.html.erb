@@ -11,8 +11,8 @@
 
   <body>
     <% if current_user %>
-      <%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%>
-      <%= current_user.name %><br>
+      <%= link_to current_user.name, {:controller => "users", :action => "show"}, :method => :get %>
+      <%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%><br>
     <% end %>
     <%= yield %>
   </body>
