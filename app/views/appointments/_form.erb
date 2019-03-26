@@ -10,10 +10,12 @@
   <%# f.number_field :walker_id %>
 
   <%= f.label :dog_id %>
-  <%= f.collection_select :dog_id, @dogs, :id, :name %><br>
+    <%= f.collection_select :dog_id, @dogs, :id, :name, {:prompt => 'Please select your dog'}, class: "browser-default"%><br>
+
 
   <%= f.label :appointment_date %>
-  <%= f.date_field :appointment_date %><br>
+  <%= f.text_field :appointment_date, class: "datepicker" %><br>
+
 
   <%= f.label :walk_duration %>
   <%= f.radio_button :walk_duration, 30 %>30 minutes
