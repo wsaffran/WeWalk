@@ -4,7 +4,7 @@
 <ul>
   <li>Appointment Number: <%= @appointment.id %></li>
   <li>Dog: <%= link_to @appointment.dog.name, '/dogs/#{@appointment.dog.id}' %></li>
-  <li>Dog's Owner: <%= link_to @appointment.dog.user.name, "/users/#{@appointment.dog.user.id}" %></li>
+  <li>Dog's Owner: <%= link_to @appointment.dog.user.first_name, "/users/#{@appointment.dog.user.id}" %></li>
 
   conditional
   <li>Walker:
