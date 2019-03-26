@@ -56,7 +56,7 @@ class AppointmentsController < ApplicationController
 
   def status_to_open
     find_appointment
-    @appointment.update(walker_id: current_user.id, status: "open")
+    @appointment.update(walker_id: nil, status: "open")
     redirect_to '/appointments/open'
   end
 
