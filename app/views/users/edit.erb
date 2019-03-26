@@ -25,7 +25,6 @@
   <%= f.label :last_name %>
   <%= f.text_field :last_name %><br>
 
-
   <%= f.label :address %>
   <%= f.text_field :address %><br>
 
@@ -33,10 +32,10 @@
   <%= f.text_field :city %><br>
 
   <%= f.label :state %>
-  <%= f.text_field :state %><br>
-
+  <%= f.select(:state, us_states, prompt: true) %><br>
+  
   <%= f.label :dob %>
-  <%= f.date_select(:dob, :order => [:month, :day, :year]) %><br>
+  <%= f.date_field :dob %><br>
 
   <%= f.submit %>
 
