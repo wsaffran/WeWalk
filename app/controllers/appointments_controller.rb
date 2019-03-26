@@ -11,6 +11,8 @@ class AppointmentsController < ApplicationController
     all_dogs
     # byebug
     @appointment = Appointment.create(appointment_params)
+    @appointment_tokens = appointment_params[:walk_duration].to_i/30
+    @appointment.update(tokens: @appointment_tokens, status: "open")
     if @appointment.valid?
       redirect_to appointment_path(@appointment)
     else
@@ -21,7 +23,7 @@ class AppointmentsController < ApplicationController
 
   def open_appointments
     @open_appointments = Appointment.all.select do |appointment|
-      appointment.status == "open" || appointment.status == nil
+      appointment.status == "open"
     end
     render :open_appointments
   end
@@ -40,6 +42,8 @@ class AppointmentsController < ApplicationController
     find_appointment
     all_dogs
     @appointment.update(appointment_params)
+    @appointment_tokens = appointment_params[:walk_duration].to_i/30
+    @appointment.update(tokens: @appointment_tokens)
     if @appointment.valid?
       redirect_to appointment_path
     else
@@ -50,7 +54,7 @@ class AppointmentsController < ApplicationController
 
   def status_to_scheduled
     find_appointment
-    @appointment.update(walker_id: current_user.id, status: "scheduled")
+    @appointment.update(walker_id: current_user.id, status: "open")
     redirect_to @appointment
   end
 
@@ -58,6 +62,18 @@ class AppointmentsController < ApplicationController
     find_appointment
     @appointment.update(walker_id: nil, status: "open")
     redirect_to '/appointments/open'
+  end
+
+  def status_to_complete
+    find_appointment
+    @appointment.update(status: "complete")
+    walkee = User.find(@appointment.dog.user.id)
+    walker = User.find(@appointment.walker_id)
+    walkee_tokens = current_user.token_balance - @appointment.tokens
+    walker_tokens = walker.token_balance + @appointment.tokens
+    walkee.update(token_balance: walkee_tokens)
+    walker.update(token_balance: walker_tokens)
+    redirect_to "/appointments/open"
   end
 
 

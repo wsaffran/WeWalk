@@ -1,27 +1,39 @@
 <h1> Appointment Number:</h1><%= @appointment.id %>
 
 <h3>Your Appointment Information:</h3>
+
 <ul>
   <li>Appointment Number: <%= @appointment.id %></li>
   <li>Dog: <%= link_to @appointment.dog.name, '/dogs/#{@appointment.dog.id}' %></li>
   <li>Dog's Owner: <%= link_to @appointment.dog.user.first_name, "/users/#{@appointment.dog.user.id}" %></li>
-
-
   <li>Walker:
     <% if !@appointment.walker.nil?   %>
-    <%= link_to @appointment.walker.first_name, user_path(@appointment) %><% end %></li>
+      <%= link_to @appointment.walker.first_name, user_path(@appointment) %>
+    <% end %></li>
   <li>Appointment Date: <%= @appointment.appointment_date %></li>
   <li>Appointment Time: <%= @appointment.appointment_time %></li>
   <li>Walk Duration: <%= @appointment.walk_duration %></li>
   <li>Notes: <%= @appointment.notes %> </li>
+  <li>Tokens: <%= @appointment.tokens %></li>
+
+  <% if @appointment.dog.user.id == current_user.id %>
+  <%= button_to 'Edit', edit_appointment_path(@appointment), {method: :get} %>
+  <% end %>
 
   <% if @appointment.dog.user.id == current_user.id %>
   <%= button_to 'Delete Appointment', appointment_path(@appointment), {method: :delete} %>
   <% end %>
 
-
-  <% if @appointment.dog.user.id == current_user.id || @appointment.walker_id == current_user.id %>
-    <%= button_to 'Cancel Appointment', {:controller => "appointments", :action => "status_to_open", :id => @appointment.id, :walker_id => nil, :status=> "scheduled"} , {:method=>:patch} %>
+  <% if @appointment.walker_id != nil%>
+    <% if @appointment.dog.user.id == current_user.id || @appointment.walker_id == current_user.id %>
+      <%= button_to 'Cancel Appointment', {:controller => "appointments", :action => "status_to_open", :id => @appointment.id, :walker_id => nil, :status=> "scheduled"} , {:method=>:patch} %>
+    <% end %>
+    <% if @appointment.dog.user.id == current_user.id %>
+    <%= button_to 'Mark as Completed', { :controller => "appointments", :action => "status_to_complete", :id => @appointment.id}, {:method=>:patch} %>
+    <% end %>
   <% end %>
+
+
+  <%= button_to "Back to My Appointments", "/users/#{current_user.id}/appointments", {method: :get} %>
 
 </ul>
