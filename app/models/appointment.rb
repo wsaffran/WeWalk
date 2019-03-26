@@ -1,11 +1,9 @@
 class Appointment < ApplicationRecord
   # belongs_to :user
   belongs_to :dog
-  belongs_to :walker, :class_name => 'User', :foreign_key => 'walker_id'
+  belongs_to :walker, :class_name => 'User', :foreign_key => 'walker_id', optional: true
 
-  validates :walker_id, :dog_id, :appointment_date, :walk_duration, :notes, :appointment_time, :presence => true
+  validates :dog_id, :appointment_date, :walk_duration, :notes, :appointment_time, :presence => true
 
 
-  # owner = User.find(appointment.dog.owner_id)
-  # owner = appointment.dog.owner
 end
