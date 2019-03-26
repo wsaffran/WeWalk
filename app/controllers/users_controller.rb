@@ -45,6 +45,19 @@ class UsersController < ApplicationController
     redirect_to "/"
   end
 
+  def appointments
+    find_user
+    @walking_appointments =
+    Appointment.all.select do |appt|
+        appt.walker_id == current_user.id
+    end
+    render :appointments
+
+
+  end
+
+
+
   private
 
   def user_params

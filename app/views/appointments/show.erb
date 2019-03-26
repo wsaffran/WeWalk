@@ -6,7 +6,7 @@
   <li>Dog: <%= link_to @appointment.dog.name, '/dogs/#{@appointment.dog.id}' %></li>
   <li>Dog's Owner: <%= link_to @appointment.dog.user.name, "/users/#{@appointment.dog.user.id}" %></li>
 
-  conditional
+
   <li>Walker:
     <% if !@appointment.walker.nil?   %>
     <%= link_to @appointment.walker.name, user_path(@appointment) %><% end %></li>
@@ -15,6 +15,13 @@
   <li>Walk Duration: <%= @appointment.walk_duration %></li>
   <li>Notes: <%= @appointment.notes %> </li>
 
-  <%= button_to 'Cancel Appointment', {:controller => "appointments", :action => "status_to_open", :id => @appointment.id, :walker_id => current_user.id, :status=> "scheduled"} , {:method=>:patch} %>
+  <% if @appointment.dog.user.id == current_user.id %>
+  <%= button_to 'Delete Appointment', appointment_path(@appointment), {method: :delete} %>
+  <% end %>
+
+
+  <% if @appointment.dog.user.id == current_user.id || @appointment.walker_id == current_user.id %>
+    <%= button_to 'Cancel Appointment', {:controller => "appointments", :action => "status_to_open", :id => @appointment.id, :walker_id => nil, :status=> "scheduled"} , {:method=>:patch} %>
+  <% end %>
 
 </ul>
