@@ -8,4 +8,5 @@ class User < ApplicationRecord
   def init
     self.token_balance ||= 0
   end
+
 end
