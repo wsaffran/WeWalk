@@ -42,7 +42,7 @@ class AppointmentsController < ApplicationController
     find_appointment
     all_dogs
     @appointment.update(appointment_params)
-    @appointment_tokens = appointment_params[:walk_dration].to_i/30
+    @appointment_tokens = appointment_params[:walk_duration].to_i/30
     @appointment.update(tokens: @appointment_tokens)
     if @appointment.valid?
       redirect_to appointment_path
