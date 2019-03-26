@@ -54,7 +54,7 @@ class AppointmentsController < ApplicationController
 
   def status_to_scheduled
     find_appointment
-    @appointment.update(walker_id: current_user.id, status: "scheduled")
+    @appointment.update(walker_id: current_user.id, status: "open")
     redirect_to @appointment
   end
 
