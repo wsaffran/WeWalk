@@ -9,7 +9,7 @@
 
   <li>Walker:
     <% if !@appointment.walker.nil?   %>
-    <%= link_to @appointment.walker.name, user_path(@appointment) %><% end %></li>
+    <%= link_to @appointment.walker.first_name, user_path(@appointment) %><% end %></li>
   <li>Appointment Date: <%= @appointment.appointment_date %></li>
   <li>Appointment Time: <%= @appointment.appointment_time %></li>
   <li>Walk Duration: <%= @appointment.walk_duration %></li>

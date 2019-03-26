@@ -7,7 +7,7 @@
 
     <li>Appointment Number: <%= appointment.id %></li>
     <li>Dog: <%= link_to appointment.dog.name, '/dogs/#{appointment.dog.id}' %></li>
-    <li>Dog's Owner: <%= link_to appointment.dog.user.name, "/users/#{appointment.dog.user.id}" %></li>
+    <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li>
     <li>Walker:
       <% if !appointment.walker.nil?   %>
       <%= link_to appointment.walker.name, user_path(appointment) %><% end %></li>
@@ -23,10 +23,10 @@ My upcoming walks: <br><br>
   <% @walking_appointments.each do |appointment| %>
     <li>Appointment Number: <%= appointment.id %></li>
     <li>Dog: <%= link_to appointment.dog.name, '/dogs/#{appointment.dog.id}' %></li>
-    <li>Dog's Owner: <%= link_to appointment.dog.user.name, "/users/#{appointment.dog.user.id}" %></li>
+    <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li>
     <li>Walker:
       <% if !appointment.walker.nil?   %>
-      <%= link_to appointment.walker.name, user_path(appointment) %><% end %></li>
+      <%= link_to appointment.walker.first_name, user_path(appointment) %><% end %></li>
     <li>Appointment Date: <%= appointment.appointment_date %></li>
     <li>Appointment Time: <%= appointment.appointment_time %></li>
     <li>Walk Duration: <%= appointment.walk_duration %></li>
