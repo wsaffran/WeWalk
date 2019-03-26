@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'datepicker' %>
   </head>
 
   <body>
@@ -14,6 +15,16 @@
       <%= link_to current_user.username, user_path(current_user.id), :method => :get %>
       <%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%><br>
     <% end %>
+    <nav>
+   <div class="nav-wrapper black darken-1">
+     <a href="#" class="brand-logo center">WeWalk</a>
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="sass.html">About</a></li>
+       <li><a href="badges.html">Contact</a></li>
+     </ul>
+   </div>
+ </nav>
+    <div class="container">
     <%= yield %>
   </body>
 </html>
