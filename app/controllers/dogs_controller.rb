@@ -7,13 +7,21 @@ class DogsController < ApplicationController
 
   def create
     users
-    @dog = Dog.create(dog_params)
-      if @dog.valid?
-        redirect_to dog_path(@dog)
-      else
-        flash[:errors] = @dog.errors.full_messages
-        render :new
-      end
+    @dog = Dog.new(dog_params)
+    if @dog.valid?
+      @dog.save
+      session[:dog_id] = @dog.id
+      redirect_to @dog
+    else
+      render :new
+    end
+    # @dog = Dog.create(dog_params)
+    #   if @dog.valid?
+    #     redirect_to dog_path(@dog)
+    #   else
+    #     flash[:errors] = @dog.errors.full_messages
+    #     render :new
+    #   end
     end
 
   def show
