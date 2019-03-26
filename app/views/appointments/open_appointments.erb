@@ -5,18 +5,13 @@
   <% @open_appointments.each do |appointment| %>
     <li>Appointment Number: <%= appointment.id %></li>
     <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
-    <li>Dog's Owner: <%= link_to appointment.dog.user.name, "users/#{appointment.dog.user.id}" %></li>
+    <li>Dog's Owner: <%= link_to appointment.dog.user.name, "/users/#{appointment.dog.user.id}" %></li>
     <li>Appointment Date: <%= appointment.appointment_date %></li>
     <li>Appointment Time: <%= appointment.appointment_time %></li>
     <li>Walk Duration: <%=appointment.walk_duration %></li>
     <li>Notes: <%= appointment.notes %> </li>
-    <%= button_to "Book This Dog!", appointment_path(appointment)  %>
 
-    #i need button_to to pass appointment.id
-    #i need button_to to pass session[:user_id]
-    #i need button_to to PATCH to appointments#status_to_scheduled
-
-    <%= button_to 'Book This Dog', {:controller => "appointments", :action => "status_to_scheduled", :id => appointment.id, :walker_id => current_user.id, :status=> "scheduled"} , {:method=>:patch} %>
+    <%= button_to 'Book This Dog', {:controller => "appointments", :action => "status_to_scheduled", :id => appointment.id }, {:method=>:patch} %><br>
 
   <% end %>
 

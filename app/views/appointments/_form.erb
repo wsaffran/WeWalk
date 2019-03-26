@@ -1,10 +1,16 @@
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |msg| %>
+  <%= msg %>
+  <% end %>
+<% end %>
+
 <%= form_for @appointment do |f| %>
 
-  <%= f.label :walker_id %>
-  <%= f.text_field :walker_id %><br>
+  <%# f.number_field :walker_id %>
 
   <%= f.label :dog_id %>
-  <%= f.text_field :dog_id %><br>
+  <%= f.collection_select :dog_id, @dogs, :id, :name %><br>
 
   <%= f.label :appointment_date %>
   <%= f.date_field :appointment_date %><br>

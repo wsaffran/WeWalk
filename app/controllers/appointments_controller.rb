@@ -1,13 +1,16 @@
 class AppointmentsController < ApplicationController
 
   def new
-    @appointment = Appointment.new
     all_dogs
+    @appointment = Appointment.new
+
     render :new
   end
 
   def create
-    @appointment = Appointment.create
+    all_dogs
+    # byebug
+    @appointment = Appointment.create(appointment_params)
     if @appointment.valid?
       redirect_to appointment_path(@appointment)
     else
@@ -18,7 +21,7 @@ class AppointmentsController < ApplicationController
 
   def open_appointments
     @open_appointments = Appointment.all.select do |appointment|
-      appointment.status == "open"
+      appointment.status == "open" || appointment.status == nil
     end
     render :open_appointments
   end
@@ -51,6 +54,13 @@ class AppointmentsController < ApplicationController
     redirect_to @appointment
   end
 
+  def status_to_open
+    find_appointment
+    @appointment.update(walker_id: current_user.id, status: "open")
+    redirect_to '/appointments/open'
+  end
+
+
   def destroy
     find_appointment.destroy
     redirect_to appointments_path
@@ -63,7 +73,7 @@ class AppointmentsController < ApplicationController
   end
 
   def all_dogs
-    @dogs = Dog.all
+    @dogs = current_user.dogs
   end
 
   def appointment_params
