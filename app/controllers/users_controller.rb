@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
+  def home
+    render :home
+  end
+
   def show
     find_user
     render :show

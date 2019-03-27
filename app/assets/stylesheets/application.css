@@ -15,3 +15,21 @@
  */
 
  @import "materialize";
+
+.brand-logo {
+  position: absolute;
+  left:50px;
+  top:0;
+  padding: 10px;
+}
+
+.page-footer {
+  position: bottom;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+}

@@ -2,14 +2,15 @@ class AppointmentsController < ApplicationController
 
   def new
     all_dogs
+    @time_selection = [30, 60, 90]
     @appointment = Appointment.new
 
     render :new
   end
 
   def create
+    @time_selection = [30, 60, 90]
     all_dogs
-    # byebug
     @appointment = Appointment.create(appointment_params)
     @appointment_tokens = appointment_params[:walk_duration].to_i/30
     @appointment.update(tokens: @appointment_tokens, status: "open")

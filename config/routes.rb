@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: 'users#home'
+
   #appointments
   get '/appointments/open', to: 'appointments#open_appointments'
   patch '/appointments/open', to: 'appointments#status_to_scheduled'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
+
 
 
 

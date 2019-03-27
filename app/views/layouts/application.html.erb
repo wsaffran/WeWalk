@@ -8,27 +8,54 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'datepicker' %>
+    <%= javascript_include_tag 'select' %>
+      <%= javascript_include_tag 'timepicker' %>
   </head>
 
   <body>
-    <% if current_user %>
-      <%= link_to current_user.username, user_path(current_user.id), :method => :get %>
-      <%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%>
-      <%= link_to "Open Appointments", "/appointments/open" %>
-      <%= link_to "My Appointments", "/users/#{current_user.id}/appointments" %>
-      <%= link_to "New Appointment", "/appointments/new" %>
-      <br>
-    <% end %>
     <nav>
-   <div class="nav-wrapper black darken-1">
-     <a href="#" class="brand-logo center">WeWalk</a>
-     <ul id="nav-mobile" class="left hide-on-med-and-down">
-       <li><a href="sass.html">About</a></li>
-       <li><a href="badges.html">Contact</a></li>
-     </ul>
-   </div>
- </nav>
+    <div class="nav-wrapper black darken-1">
+    <% if current_user %>
+    <ul class="right">
+      <a href="/" class="brand-logo">WeWalk</a>
+      <li><%= link_to current_user.username, user_path(current_user.id), :method => :get %></li>
+      <li><%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%></li>
+      <li><%= link_to "Open Appointments", "/appointments/open" %></li>
+      <li><%= link_to "My Appointments", "/users/#{current_user.id}/appointments" %></li>
+      <li><%= link_to "New Appointment", "/appointments/new" %></li>
+    </ul>
+    <% end %>
+     </div>
+     </nav>
+
     <div class="container">
+
     <%= yield %>
+    </div>
   </body>
+  <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Footer Content</h5>
+              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2019 WeWalk
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+      </footer>
 </html>

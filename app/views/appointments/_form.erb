@@ -7,29 +7,29 @@
 
 <%= form_for @appointment do |f| %>
 
-  <%# f.number_field :walker_id %>
-
-  <%= f.label :dog_id %>
-    <%= f.collection_select :dog_id, @dogs, :id, :name, {:prompt => 'Please select your dog'}, class: "browser-default"%><br>
+  <%= f.label :Dog_Name %>
+  <%= f.collection_select :dog_id, @dogs, :id, :name, {:prompt => 'Please select your dog'}, class: "browser-default"%><br>
 
 
   <%= f.label :appointment_date %>
   <%= f.text_field :appointment_date, class: "datepicker" %><br>
 
+  <%= f.label :appointment_time %>
+  <%= f.text_field :appointment_time, class: "timepicker" %><br>
 
-  <%= f.label :walk_duration %>
-  <%= f.radio_button :walk_duration, 30 %>30 minutes
-  <%= f.radio_button :walk_duration, 60 %>60 minutes
-  <%= f.radio_button :walk_duration, 90 %>90 minutes <br>
+  <%= f.label :walk_duration %><br><br>
+    <%= f.collection_select :walk_duration, @time_selection, :to_s, :to_s, {:prompt => 'Please select walk duration'}, class: "browser-default"%><br>
 
   <%= f.label :notes %>
   <%= f.text_area :notes %><br>
 
-  <%= f.label :appointment_time %>
-  <%= f.number_field :appointment_time %><br>
 
 
+
+  <div class="action btn waves-effect waves-light actions white">
+    <span class= "white-text">
   <%= f.submit %>
-
+  </div>
+<br>
 
 <% end %>
