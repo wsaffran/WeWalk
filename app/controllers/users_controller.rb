@@ -51,9 +51,14 @@ class UsersController < ApplicationController
 
   def appointments
     find_user
+    @user_appointments = find_user_appointments
     @walking_appointments =
     Appointment.all.select do |appt|
         appt.walker_id == current_user.id
+    end
+    @walkee_appointments =
+    Appointment.all.select do |appt|
+      appt.dog.user.id == current_user.id
     end
     render :appointments
 
@@ -70,6 +75,16 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def find_user_appointments
+    user_appointments = []
+    Appointment.all.each do |appointment|
+      if appointment.walker_id == current_user.id || appointment.dog.user.id == current_user.id
+        user_appointments << appointment
+      end
+    end
+    user_appointments
   end
 
 
