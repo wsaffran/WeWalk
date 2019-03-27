@@ -1,7 +1,8 @@
 <h3>Open appointments! Walkers Needed.</h3>
 
 
--------------------------------
+<div class="filter-open-appointments">
+
 Filter by Days:
   <form action="/appointments/open">
      <p>
@@ -39,7 +40,7 @@ Filter by Days:
           <input type="checkbox" name = "days[]" value = "0" />
           <span>Sunday</span><br><br>
         </label>
-
+        Filter by walk duration:
         <label>
           <input type="checkbox" name = "duration[]" value = 30 />
           <span>30 Minutes</span><br>
@@ -58,12 +59,14 @@ Filter by Days:
      </p>
 
       <%= submit_tag 'Filter' %>
-
+ <%= button_to 'Clear', '/appointments/open', {method: :get} %>
    </form>
-   <br>
-     <%= button_to 'Clear', '/appointments/open', {method: :get} %>
 
--------------------------------
+
+</div>
+
+<div class="open-margin">
+</div>
 <div class ="row">
   <% @open_appointments.each do |appointment| %>
     <% if appointment.dog.user.id != current_user.id %>
@@ -92,4 +95,5 @@ Filter by Days:
     </div>
     <% end %>
   <% end %>
+</div>
 </div>
