@@ -35,11 +35,13 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
+    @time_selection = [30, 60, 90]
     find_appointment
     all_dogs
   end
 
   def update
+    @time_selection = [30, 60, 90]
     find_appointment
     all_dogs
     @appointment.update(appointment_params)
@@ -80,7 +82,7 @@ class AppointmentsController < ApplicationController
 
   def destroy
     find_appointment.destroy
-    redirect_to appointments_path
+    redirect_to '/'
   end
 
   private

@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   patch '/appointments/open', to: 'appointments#status_to_scheduled'
   patch '/appointments/:id', to: 'appointments#status_to_open'
   patch '/appointments/:id/close', to: 'appointments#status_to_complete'
-
+  delete '/appointments/:id', to: 'appointments#destroy'
   #users
 
-  get '/users/:id/appointments', to: 'users#appointments'
+  get '/users/:id/appointments', to: 'users#appointments', as: 'user_appointments'
 
   resources :users, only: [:show, :new, :create, :edit, :update, :delete]
   resources :appointments, only: [:new, :create, :show, :edit, :update]

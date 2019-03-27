@@ -22,10 +22,9 @@
                 <li>Appointment Date: <%= appointment.appointment_date %></li>
                 <li>Appointment Time: <%= appointment.appointment_time %></li>
                 <li>Walk Duration: <%= appointment.walk_duration %></li><br>
-                <div class= "waves-effect waves-light btn-small white"
-                  <%= button_to "View", appointment_path(appointment.id), {method: :get} %><br>
-                </div>
-
+                <div class="action btn waves-effect waves-light actions white">
+                  <span class= "white-text">
+                <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %></div><br>
               </div>
             </div>
           </div>
@@ -33,6 +32,7 @@
     <% end %>
     </div>
   <% end %>
+
 
 
   <div class="divider"></div>

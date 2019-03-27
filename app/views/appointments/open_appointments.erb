@@ -14,10 +14,13 @@
           <li>Appointment Date: <%= appointment.appointment_date %></li>
           <li>Appointment Time: <%= appointment.appointment_time %></li>
           <li>Walk Duration: <%=appointment.walk_duration %></li><br>
-          <div class="center">
-          <%= button_to 'Walk This Dog', {:controller => "appointments", :action => "status_to_scheduled", :id => appointment.id }, {:method=>:patch} %><br>
+            <div class="action btn waves-effect waves-light actions white">
+              <span class= "white-text">
+          <%= button_to 'Walk This Dog', {:controller => "appointments", :action => "status_to_scheduled", :id => appointment.id }, {:method=>:patch} %></div><br><br>
+          <div class="action btn waves-effect waves-light actions white">
+            <span class= "white-text">
           <%= button_to 'View', appointment_path(appointment.id) , {:method=>:get} %>
-          </div>
+            </div>
         </div>
       </div>
     </div>
