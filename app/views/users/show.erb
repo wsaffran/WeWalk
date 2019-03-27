@@ -59,7 +59,7 @@
 </div>
 
 
-<!-- CHECK TO SEE IF THIS WORKS WITH TEST DATA -->
+
 
 <div class="action btn waves-effect waves-light actions white">
   <span class= "white-text">
@@ -69,3 +69,18 @@
 </div>
 </body>
 </html>
+
+
+<h3>Reviews</h3>
+<!-- VALIDATE WHO CAN SEE REVIEW (if we completed an appointment together)-->
+<% if @can_leave_review %>
+  <%= button_to "Leave Review", new_user_review_path(params[:id]), {method: :get} %>
+<% end %>
+
+<ul>
+  <% @all_reviews.each do |review| %>
+    <li><%= review.rating %></li>
+    <li><%= review.content %></li>
+    <li><%= User.find(review.reviewer_id).username %></li><br>
+  <% end %>
+</ul>
