@@ -1,0 +1,14 @@
+<%= form_for @review do |f| %>
+
+  <%= f.label "User" %>
+  <%= f.select :walkee_id, @users.map {|n| [n.username, n.id]} %>
+  
+  <%= f.label :rating %>
+  <%= f.number_field :rating %>
+
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+
+  <%= f.submit %>
+
+<% end %>
