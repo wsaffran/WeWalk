@@ -9,15 +9,16 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'datepicker' %>
     <%= javascript_include_tag 'select' %>
-      <%= javascript_include_tag 'timepicker' %>
+    <%= javascript_include_tag 'timepicker' %>
   </head>
 
   <body>
     <nav>
     <div class="nav-wrapper black darken-1">
     <% if current_user %>
+    <a href="/" class="brand-logo">WeWalk</a>
     <ul class="right">
-      <a href="/" class="brand-logo">WeWalk</a>
+
       <li><%= link_to current_user.username, user_path(current_user.id), :method => :get %></li>
       <li><%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%></li>
       <li><%= link_to "Open Appointments", "/appointments/open" %></li>
