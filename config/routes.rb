@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'users#home'
 
+  resources :analytics
+
   #appointments
   get '/appointments/open', to: 'appointments#open_appointments'
   patch '/appointments/open', to: 'appointments#status_to_scheduled'

@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   validates :username, :first_name, :last_name, :address, :city, :state, :zip_code, :dob, :password_digest, presence: true
   validates :username, uniqueness: true
+  validates :username, exclusion: { in: %w(Admin), message: "%{value} is reserved." }
   # validates :name, { :length => { in: 3..30}}
   validates :password, length: { in: 6..20 }, :on => :create
   validates :zip_code, { :length => { :is => 5 } }
