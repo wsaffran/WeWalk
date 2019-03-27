@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
   def show
     find_user
+    @all_reviews = all_reviews
+    @can_leave_review = can_leave_review?
     render :show
   end
 
@@ -61,8 +63,38 @@ class UsersController < ApplicationController
       appt.dog.user.id == current_user.id
     end
     render :appointments
+  end
 
+  def find_user_appointments
+    user_appointments = []
+    Appointment.all.each do |appointment|
+      if appointment.walker_id == current_user.id || appointment.dog.user.id == current_user.id
+        user_appointments << appointment
+      end
+    end
+    user_appointments
+  end
 
+  def can_leave_review?
+    response = false
+    if @user.id != current_user.id
+      Appointment.all.each do |appointment|
+        if appointment.walker_id == current_user.id || appointment.dog.user.id == current_user.id
+          response = true
+        end
+      end
+    end
+    response
+  end
+
+  def all_reviews
+    all_reviews = []
+    Review.all.each do |review|
+      if review.reviewee_id == @user.id
+        all_reviews << review
+      end
+    end
+    all_reviews
   end
 
 
@@ -76,16 +108,5 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find(params[:id])
   end
-
-  def find_user_appointments
-    user_appointments = []
-    Appointment.all.each do |appointment|
-      if appointment.walker_id == current_user.id || appointment.dog.user.id == current_user.id
-        user_appointments << appointment
-      end
-    end
-    user_appointments
-  end
-
 
 end

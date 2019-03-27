@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :appointments
   has_many :dogs
   has_many :walkee_appointments, :class_name => 'Appointment', through: :dogs
+  has_many :reviews
   after_initialize :init
 
   validates :username, :first_name, :last_name, :address, :city, :state, :zip_code, :dob, :password_digest, presence: true
