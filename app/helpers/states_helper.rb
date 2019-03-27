@@ -1,6 +1,7 @@
 module StatesHelper
 
   def us_states
+    
     [
       ['Alabama', 'AL'],
       ['Alaska', 'AK'],

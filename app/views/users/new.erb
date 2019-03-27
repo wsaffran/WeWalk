@@ -39,7 +39,9 @@
   <%= f.text_field :city %><br>
 
   <%= f.label :state %>
-  <%= f.select(:state, us_states, prompt: true) %><br>
+
+  <%= f.collection_select :state, us_states, :to_s, :to_s, {:prompt => 'Please select State'}, class: "browser-default"%><br>
+
 
   <%= f.label :zip_code %>
   <%= f.number_field :zip_code %><br></br>

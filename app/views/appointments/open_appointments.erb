@@ -1,5 +1,69 @@
 <h3>Open appointments! Walkers Needed.</h3>
 
+
+-------------------------------
+Filter by Days:
+  <form action="/appointments/open">
+     <p>
+       <label>
+         <input type="checkbox" name ="days[]" value = "1" />
+         <span>Monday</span><br>
+        </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "2" />
+          <span>Tuesday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "3" />
+          <span>Wednesday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "4" />
+          <span>Thursday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "5" />
+          <span>Friday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "6" />
+          <span>Saturday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name = "days[]" value = "0" />
+          <span>Sunday</span><br><br>
+        </label>
+
+        <label>
+          <input type="checkbox" name = "duration[]" value = 30 />
+          <span>30 Minutes</span><br>
+        </label>
+
+        <label>
+          <input type="checkbox" name = "duration[]" value = 60 />
+          <span>60 Minutes</span><br>
+        </label>
+
+        <label>
+          <input type="checkbox" name = "duration[]" value = 90 />
+          <span>90 Minutes</span><br>
+        </label>
+
+     </p>
+
+      <%= submit_tag 'Filter' %>
+
+   </form>
+   <br>
+     <%= button_to 'Clear', '/appointments/open', {method: :get} %>
+
+-------------------------------
 <div class ="row">
   <% @open_appointments.each do |appointment| %>
     <% if appointment.dog.user.id != current_user.id %>
