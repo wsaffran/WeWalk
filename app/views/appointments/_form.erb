@@ -18,7 +18,7 @@
   <%= f.text_field :appointment_time, class: "timepicker" %><br>
 
   <%= f.label :walk_duration %><br><br>
-    <%= f.collection_select :walk_duration, @time_selection, :to_s, :to_s, {:prompt => 'Please select walk duration'}, class: "browser-default"%><br>
+    <%= f.collection_select :walk_duration, @time_selection, :to_s, :to_s, {:prompt => 'Please select walk duration (minutes)'}, class: "browser-default"%><br>
 
   <%= f.label :notes %>
   <%= f.text_area :notes %><br>
