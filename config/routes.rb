@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'users#home'
 
-  resources :analytics
+  resources :analytics, only: [:index]
 
   #appointments
   get '/appointments/open', to: 'appointments#open_appointments'
