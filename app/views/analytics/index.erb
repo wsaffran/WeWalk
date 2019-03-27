@@ -1,5 +1,16 @@
 <h1>My Analytics</h1>
 
-<h3>Total Dog Walks: <%= @total_walkee_count %></h3>
-<h3>Total Dogs Walked: <%= @total_walked_count %></h3>
-<h3>Total Tokens Gained: <%= @total_gained_coins %></h3>
+<% if current_user.username != "Admin" %>
+  <p>Total Dog Walks: <%= @total_walkee_count %></p>
+  <p>Total Dogs Walked: <%= @total_walked_count %></p>
+  <p>Total Tokens Gained: <%= @total_gained_coins %></p>
+  <p>Total Tokens Spent: <%= @total_spent_coins %></p>
+<% end %>
+
+<% if current_user.username == "Admin" %>
+  <p>Total Users: <%= @total_users %></p>
+  <p>Open Appointments: <%= @open_appointments %></p>
+  <p>Scheduled Appointments: <%= @scheduled_appointments %></p>
+  <p>Closed Appointments: <%= @closed_appointments %></p>
+  <p>User With Most Coins: <%= @user_with_most_coins.username %> Coins: <%= @user_with_most_coins.token_balance %></p>
+<% end %>
