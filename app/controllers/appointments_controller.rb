@@ -66,13 +66,6 @@ class AppointmentsController < ApplicationController
     render :open_appointments
   end
 
-  def index
-    if params[:q]
-      @coupon = Coupon.where('store LIKE ?', "%#{params[:store]}%")
-    else
-      @coupon = Coupon.all
-    end
-  end
 
   def show
     find_appointment
@@ -141,7 +134,7 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:walker_id, :dog_id, :appointment_date, :walk_duration, :notes, :appointment_time, :status, :q)
+    params.require(:appointment).permit(:walker_id, :dog_id, :appointment_date, :walk_duration, :notes, :appointment_time, :status)
   end
 
 end
