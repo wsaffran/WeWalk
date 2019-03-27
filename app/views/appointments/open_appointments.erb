@@ -1,7 +1,8 @@
-<h3>Open appointments! Walkers Needed.</h1>
+<h3>Open appointments! Walkers Needed.</h3>
 
 <div class ="row">
   <% @open_appointments.each do |appointment| %>
+    <% if appointment.dog.user.id != current_user.id %>
     <div class="col s4">
       <div class="card">
         <div class="card-image">
@@ -25,5 +26,6 @@
       </div>
     </div>
     </div>
+    <% end %>
   <% end %>
 </div>

@@ -2,41 +2,78 @@
 
 
 <div class="divider"></div>
+<h4>Open Appointments</h4>
   <% @user.dogs.each do |dog| %>
-  <div class ="row">
-    <%= dog.name %>'s Appointments:<br><br>
-      <% dog.appointments.each do |appointment| %>
-        <div class="col s4">
-          <div class="card">
-            <div class="card-image">
-              <img src="https://i.imgur.com/kgIFYme.jpg">
-              <div class="card-content">
-                Appointment Number: <%= appointment.id %><br><br>
-                <li>Walker:
-                  <% if !appointment.walker.nil?   %>
-                  <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
-                <li>Appointment Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
-                <li>Appointment Time: <%= appointment.appointment_time %></li>
-                <li>Walk Duration: <%= appointment.walk_duration %></li>
-                <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
-                <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
-                <div class="action btn waves-effect waves-light actions white">
-                  <span class= "white-text">
-                <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %></div><br>
+    <div class ="row">
+      <%= dog.name %>'s Appointments:<br><br>
+        <% dog.appointments.each do |appointment| %>
+          <% if appointment.status == "open" %>
+            <div class="col s4">
+              <div class="card">
+                <div class="card-image">
+                  <img src="https://i.imgur.com/kgIFYme.jpg">
+                  <div class="card-content">
+                    Appointment Number: <%= appointment.id %><br><br>
+                    <li>Walker:
+                      <% if !appointment.walker.nil?   %>
+                      <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
+                    <li>Appointment Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
+                    <li>Appointment Time: <%= appointment.appointment_time %></li>
+                    <li>Walk Duration: <%= appointment.walk_duration %></li>
+                    <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
+                    <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
+                    <div class="action btn waves-effect waves-light actions white">
+                      <span class= "white-text">
+                    <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %></div><br>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
+      <% end %>
+      </div>
+  <% end %>
+
+  <div class="divider"></div>
+  <h4>Confirmed Appointments</h4>
+    <% @user.dogs.each do |dog| %>
+      <div class ="row">
+        <%= dog.name %>'s Appointments:<br><br>
+          <% dog.appointments.each do |appointment| %>
+            <% if appointment.status == "confirmed" %>
+              <div class="col s4">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="https://i.imgur.com/kgIFYme.jpg">
+                    <div class="card-content">
+                      Appointment Number: <%= appointment.id %><br><br>
+                      <li>Walker:
+                        <% if !appointment.walker.nil?   %>
+                        <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
+                      <li>Appointment Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
+                      <li>Appointment Time: <%= appointment.appointment_time %></li>
+                      <li>Walk Duration: <%= appointment.walk_duration %></li>
+                      <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
+                      <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
+                      <div class="action btn waves-effect waves-light actions white">
+                        <span class= "white-text">
+                      <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %></div><br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+        <% end %>
         </div>
     <% end %>
-    </div>
-  <% end %>
+
 
   <div class="divider"></div>
 
 <h4>My upcoming walks:</h4><br><br>
   <div class ="row">
     <% @walking_appointments.each do |appointment| %>
-
+      <% if appointment.status == "scheduled" %>
       <div class="col s4">
         <div class="card">
           <div class="card-image">
@@ -59,5 +96,39 @@
           </div>
         </div>
       </div>
+      <% end %>
     <% end %>
   </div>
+
+  <div class="divider"></div>
+
+
+  <h4>My completed Appointments:</h4><br><br>
+    <div class ="row">
+      <% @user_appointments.each do |appointment| %>
+        <% if appointment.status == "complete" %>
+          <div class="col s4">
+            <div class="card">
+              <div class="card-image">
+                <img src="https://i.imgur.com/kgIFYme.jpg">
+                <div class="card-content">
+                  Appointment Number: <%= appointment.id %><br><br>
+                  <li>Walker:
+                    <% if !appointment.walker.nil?   %>
+                    <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
+                  <li>Appointment Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
+                  <li>Appointment Time: <%= appointment.appointment_time %></li>
+                  <li>Walk Duration: <%= appointment.walk_duration %></li>
+                  <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
+                  <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
+                  <div class="action btn waves-effect waves-light actions white">
+                    <span class= "white-text">
+                  <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %></div><br>
+              <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
