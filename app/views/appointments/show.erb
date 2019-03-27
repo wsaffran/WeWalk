@@ -12,7 +12,7 @@
   <li>Appointment Time: <%= @appointment.appointment_time %></li>
   <li>Walk Duration: <%= @appointment.walk_duration %></li>
   <li>Notes: <%= @appointment.notes %> </li>
-  <li>Tokens: <%= @appointment.tokens %></li><br><br>
+    <li>Tokens: <%= @appointment.tokens %></li><br><br>
 
   <% if @appointment.dog.user.id == current_user.id %>
   <div class="action btn waves-effect waves-light actions white">

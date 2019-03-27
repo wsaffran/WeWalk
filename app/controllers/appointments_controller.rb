@@ -22,11 +22,56 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  # def open_appointments
+  #   @open_appointments = Appointment.all.select do |appointment|
+  #     appointment.status == "open"
+  #   end
+  #   render :open_appointments
+  # end
+
   def open_appointments
+    @params_day = []
+    @params_duration = []
+
+    if params[:days] || params[:duration]
+
+      if params[:days].nil?
+        @params_day = [0,1,2,3,4,5,6,7]
+      else
+        params[:days].each do |param|
+          @params_day << param.to_i
+        end
+      end
+
+      if params[:duration].nil?
+        @params_duration = [30, 60, 90]
+      else
+        params[:duration].each do |param|
+          @params_duration << param.to_i
+        end
+      end
+
+
+      @open_appointments = Appointment.all.select do |appointment|
+        appointment.status == "open" && @params_day.include?(appointment.appointment_date.wday) && @params_duration.include?(appointment.walk_duration) && appointment.appointment_date > Time.now
+      end
+
+    else
+
     @open_appointments = Appointment.all.select do |appointment|
-      appointment.status == "open"
+      appointment.status == "open" && appointment.appointment_date > Time.now
     end
+  end
+
     render :open_appointments
+  end
+
+  def index
+    if params[:q]
+      @coupon = Coupon.where('store LIKE ?', "%#{params[:store]}%")
+    else
+      @coupon = Coupon.all
+    end
   end
 
   def show
@@ -96,7 +141,7 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:walker_id, :dog_id, :appointment_date, :walk_duration, :notes, :appointment_time, :status)
+    params.require(:appointment).permit(:walker_id, :dog_id, :appointment_date, :walk_duration, :notes, :appointment_time, :status, :q)
   end
 
 end

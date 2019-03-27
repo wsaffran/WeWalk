@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   #appointments
   get '/appointments/open', to: 'appointments#open_appointments'
+  post '/appointments/open', to: 'appointments#open_appointments'
   patch '/appointments/open', to: 'appointments#status_to_scheduled'
   patch '/appointments/:id', to: 'appointments#status_to_open'
   patch '/appointments/:id/close', to: 'appointments#status_to_complete'
