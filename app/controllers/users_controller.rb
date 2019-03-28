@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     find_user
     @all_reviews = all_reviews
     @can_leave_review = can_leave_review?
+    @feed = my_completed_appointments
     render :show
   end
 
@@ -98,6 +99,13 @@ class UsersController < ApplicationController
   end
 
 
+  # ALL FOR FEED
+
+  def my_completed_appointments
+    find_user_appointments.select do |appointment|
+      appointment.status == "complete"
+    end.sort_by {|appointment| appointment.appointment_date}
+  end
 
   private
 
