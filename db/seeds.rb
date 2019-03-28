@@ -31,3 +31,11 @@ end
 50.times do
   Appointment.create(walker_id: nil, dog_id: rand(1..12), appointment_date: Date.new(2019, rand(1..12), rand(1..28)), walk_duration: [30, 60, 90].sample, notes: "none", status: "open", appointment_time: "09:00 AM", tokens: rand(1..3))
 end
+
+15.times do
+  Review.create(rating: rand(3..5), content: "great dogs!", reviewer_id: rand(1..5), reviewee_id: rand(6..10))
+end
+
+15.times do
+  Review.create(rating: rand(4..5), content: "awesome!",reviewer_id: rand(6..10), reviewee_id: rand(1..5))
+end

@@ -71,6 +71,34 @@
   /* margin-left: auto;
   margin-right: auto */
 }
+
+.avatar-dog-inline {
+  vertical-align: middle;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.inline-p-style{
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #2D3E73;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.h4-inline {
+  text-align: center;
+  color: #2D3E73;
+  font-weight: 600;
+}
+
+
 h1 {
   color: #2d3e73
 }
@@ -106,6 +134,11 @@ h3 {
 
 .dogs {
   color: #F4F3F6
+}
+
+.stats-side-user {
+  color: #F4F3F6;
+  line-height: 25px;
 }
 
 
@@ -152,6 +185,7 @@ left: 0px;
   padding-top: 150px;
   padding-left: 60px;
   min-height: 553px;
+  font-weight: 600;
 }
 
 .home-body{
@@ -188,6 +222,7 @@ left: 0px;
    display: inline-block;
    font-size: 16px;
    margin: 35px 2px 0px 0px;
+   border-radius: 6px;
    cursor: pointer;
 }
 .button:hover {background-color: #63C4DE}
@@ -266,6 +301,15 @@ left: 0px;
     display: block;
     font-weight: bold;
   }
+
+.inline-container-what-we-do {
+  background-color: #F4F3F6;
+  height: 400px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: -20px;
+}
+
 
 
 /* .button{
