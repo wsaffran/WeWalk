@@ -90,6 +90,25 @@ h3 {
 
 } */
 
+#h4-side-user-info{
+  color: #F4F3F6;
+}
+
+.user_address {
+  color: #F4F3F6
+}
+.user_dob {
+  color: #F4F3F6
+}
+.token_balance{
+  color: #F4F3F6
+}
+
+.dogs {
+  color: #F4F3F6
+}
+
+
 body {
   background-color: white;
 }

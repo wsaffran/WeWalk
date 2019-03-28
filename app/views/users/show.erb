@@ -30,9 +30,9 @@
 
     <!-- /********USER-INFO-SECTION*************/ -->
   <ul>
-    <h4>User Info</h4>
+    <h4 id="h4-side-user-info">User Info</h4>
       <div class="user_address">
-        <li>Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %></li>
+        Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %>
       </div>
       <div class="user_dob">
         <% if @user.dob != nil %>
@@ -63,7 +63,7 @@
 
   <div class="dogs">
     <ul>
-      <h3>Dogs</h3>
+      <h4>My Dogs:</h4>
         <% @user.dogs.each do |dog| %>
           <li>
             <%= link_to dog_path(dog.id) do %>
