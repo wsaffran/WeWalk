@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<div class="row">
+
 
 <head>
 <div class="show_title">
@@ -11,14 +11,16 @@
 <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-375-456327.png" alt="Avatar" class="avatar">
 </head>
 
-<div class="divider"></div>
 
-  <h5>Section 1</h5>
-  <p>Stuff</p>
-</div>
+
 
 <body>
-<div class="col s6">
+  <div class="row">
+<div class="col s4 ">
+  <div class="profile-left-color">
+
+
+  <br><br>
 <div class="divider"></div>
 <div class="section">
 <div class="user_info">
@@ -55,14 +57,18 @@
 
   <!-- /********USER-DOG-SECTION*************/ -->
 
-  <div class="col s6">
+
   <div class="dogs">
     <ul>
       <h3>Dogs</h3>
         <% @user.dogs.each do |dog| %>
-          <img src="https://i.imgur.com/kgIFYme.jpg" alt="Avatar-dog" class="avatar-dog">
-          <li><%= link_to dog.name, dog_path(dog.id) %></li>
-        <% end %>
+
+            <img src="https://i.imgur.com/kgIFYme.jpg" alt="Avatar-dog" class="avatar-dog"></a>
+          <li>
+            <%=link_to dog.name, dog_path(dog.id) %>
+              <% end %>
+          </li>
+
     </ul>
   </div>
 
@@ -73,25 +79,35 @@
   <%= button_to "Register New Dog", new_dog_path, {method: :get} %>
 </div><br><br>
 
-</div>
+
 
 </div><br><br>
-<div class="divider"></div>
-<h3>Reviews</h3>
-<!-- VALIDATE WHO CAN SEE REVIEW (if we completed an appointment together)-->
-<% if @can_leave_review %>
-  <%= button_to "Leave Review", new_user_review_path(params[:id]), {method: :get} %>
-<% end %>
-
-<ul>
-  <% @all_reviews.each do |review| %>
-    <li><%= review.rating %></li>
-    <li><%= review.content %></li>
-    <li><%= User.find(review.reviewer_id).username %></li><br>
-  <% end %>
-</ul>
-
-
 </div>
+<br><br>
+<div class="divider"></div>
+
+<!-- REVIEWS START HERE -->
+<div class="col s8">
+
+<h3>Reviews</h3>
+  <!-- VALIDATE WHO CAN SEE REVIEW (if we completed an appointment together)-->
+  <% if @can_leave_review %>
+    <%= button_to "Leave Review", new_user_review_path(params[:id]), {method: :get} %>
+  <% end %>
+
+  <ul>
+    <% @all_reviews.each do |review| %>
+      <li><%= review.rating %></li>
+      <li><%= review.content %></li>
+      <li><%= User.find(review.reviewer_id).username %></li><br>
+    <% end %>
+  </ul>
+  <div class="divider"></div>
+<!-- right side column div -->
+</div>
+
+<!-- row div end below -->
+</div>
+
 </body>
 </html>
