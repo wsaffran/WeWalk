@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     find_user
     @all_reviews = all_reviews
     @can_leave_review = can_leave_review?
-    @feed = my_completed_appointments
+    @feed = my_completed_appointments.reverse
     render :show
   end
 
