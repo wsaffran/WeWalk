@@ -77,18 +77,18 @@ Filter by Days:
     <div class="col s4">
       <div class="card">
         <div class="card-image">
-          <img src="https://i.imgur.com/kgIFYme.jpg">
+          <img src="<%= appointment.dog.image %>", class ="img-card">
           <div class="card-content">
           Appointment Number: <%= appointment.id %><br><br>
-          <li>Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
-          <li>Time: <%= appointment.appointment_time %></li>
-          <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
-          <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li>
+           <%= appointment.appointment_date.strftime("%B %d, %Y") %> //
+          <%= appointment.appointment_time %><br>
+          Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %><br>
+          Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %><br>
 
-          <li>Walk Duration: <%=appointment.walk_duration %></li><br>
+          Walk Duration: <%=appointment.walk_duration %><br><br>
             <div class="action btn waves-effect waves-light actions white">
               <span class= "white-text">
-          <%= button_to 'Walk This Dog', {:controller => "appointments", :action => "status_to_scheduled", :id => appointment.id }, {:method=>:patch} %></div><br><br>
+          <%= button_to 'Walk This Dog', {:controller => "appointments", :action => "status_to_scheduled", :id => appointment.id }, {:method=>:patch} %></div>
           <div class="action btn waves-effect waves-light actions white">
             <span class= "white-text">
           <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %>

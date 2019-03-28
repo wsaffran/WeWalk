@@ -1,27 +1,27 @@
-
+<!-- https://i.imgur.com/kgIFYme.jpg -->
 <h3> Appointments for my Dog(s):</h3>
-
 <div class="divider"></div>
-<h4>Open Appointments</h4>
+<br>
   <% @user.dogs.each do |dog| %>
     <div class ="row">
       <%= dog.name %>'s Appointments:<br><br>
-        <% dog.appointments.each do |appointment| %>
+              <% dog.appointments.each do |appointment| %>
           <% if appointment.status == "open" %>
             <div class="col s4">
               <div class="card">
                 <div class="card-image">
-                  <img src="https://i.imgur.com/kgIFYme.jpg">
+                  <img src="<%= appointment.dog.image %>", class="img-card">
                   <div class="card-content">
                     Appointment Number: <%= appointment.id %><br><br>
-                    <li>Walker:
+                    <%= appointment.appointment_date.strftime("%B %d, %Y") %> //
+                    <%= appointment.appointment_time %><br>
+                    Walker:
                       <% if !appointment.walker.nil?   %>
-                      <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
-                    <li>Appointment Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
-                    <li>Appointment Time: <%= appointment.appointment_time %></li>
-                    <li>Walk Duration: <%= appointment.walk_duration %></li>
-                    <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
-                    <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
+                      <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %>
+                    <br>
+                    Walk Duration: <%= appointment.walk_duration %> minutes <br>
+                    Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %><br>
+                    Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %><br><br>
                     <div class="action btn waves-effect waves-light actions white">
                       <span class= "white-text">
                     <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %></div><br>
@@ -44,7 +44,7 @@
               <div class="col s4">
                 <div class="card">
                   <div class="card-image">
-                    <img src="https://i.imgur.com/kgIFYme.jpg">
+                    <img src="<%= appointment.dog.image %>", class ="img-card">
                     <div class="card-content">
                       Appointment Number: <%= appointment.id %><br><br>
                       <li>Walker:
@@ -77,17 +77,13 @@
       <div class="col s4">
         <div class="card">
           <div class="card-image">
-            <img src="https://i.imgur.com/kgIFYme.jpg">
+            <img src="<%= appointment.dog.image %>", class ="img-card">
             <div class="card-content">
               Appointment Number: <%= appointment.id %><br><br>
-              <li>Walker:
-                <% if !appointment.walker.nil?   %>
-                <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
-              <li>Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
-              <li>Time: <%= appointment.appointment_time %></li>
-              <li>Walk Duration: <%= appointment.walk_duration %></li>
-              <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
-              <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
+              <%= appointment.appointment_date.strftime("%B %d, %Y") %> // <%= appointment.appointment_time %> <br>
+              Walk Duration: <%= appointment.walk_duration %> <br>
+              Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %> <br>
+              Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br><br>
               <div class="action btn waves-effect waves-light actions white">
                 <span class= "white-text">
               <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %></div><br>
@@ -110,17 +106,13 @@
           <div class="col s4">
             <div class="card">
               <div class="card-image">
-                <img src="https://i.imgur.com/kgIFYme.jpg">
+                <img src="<%= appointment.dog.image %>", class ="img-card">
                 <div class="card-content">
                   Appointment Number: <%= appointment.id %><br><br>
-                  <li>Walker:
-                    <% if !appointment.walker.nil?   %>
-                    <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
-                  <li>Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
-                  <li>Time: <%= appointment.appointment_time %></li>
-                  <li>Walk Duration: <%= appointment.walk_duration %></li>
-                  <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
-                  <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
+                  <%= appointment.appointment_date.strftime("%B %d, %Y") %> // <%= appointment.appointment_time %> <br>
+                  Walk Duration: <%= appointment.walk_duration %> <br>
+                  Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %> <br>
+                  Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br><br>
                   <div class="action btn waves-effect waves-light actions white">
                     <span class= "white-text">
                   <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %></div><br>
@@ -132,4 +124,3 @@
         <% end %>
       <% end %>
     </div>
-    
