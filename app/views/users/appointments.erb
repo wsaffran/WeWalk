@@ -6,8 +6,9 @@
   <% @user.dogs.each do |dog| %>
     <div class ="row">
       <%= dog.name %>'s Appointments:<br><br>
-        <% dog.appointments.each do |appointment| %>
-          <% if appointment.status == "open" %>
+        <% a = dog.appointments.all.sort_by {|appointment| appointment.appointment_date} %>
+        <% a.each do |appointment| %>
+          <% if appointment.status == "open" && appointment.walker_id == nil%>
             <div class="col s4">
               <div class="card">
                 <div class="card-image">
@@ -35,12 +36,13 @@
   <% end %>
 
   <div class="divider"></div>
-  <h4>Confirmed Appointments</h4>
+  <h4>Scheduled Appointments</h4>
     <% @user.dogs.each do |dog| %>
       <div class ="row">
         <%= dog.name %>'s Appointments:<br><br>
-          <% dog.appointments.each do |appointment| %>
-            <% if appointment.status == "confirmed" %>
+          <% a = dog.appointments.all.sort_by {|appointment| appointment.appointment_date} %>
+          <% a.each do |appointment| %>
+            <% if appointment.status == "scheduled" %>
               <div class="col s4">
                 <div class="card">
                   <div class="card-image">
@@ -72,7 +74,8 @@
 
 <h4>My upcoming walks:</h4><br><br>
   <div class ="row">
-    <% @walking_appointments.each do |appointment| %>
+    <% a = @walking_appointments.sort_by {|appointment| appointment.appointment_date} %>
+    <% a.each do |appointment| %>
       <% if appointment.status == "scheduled" %>
       <div class="col s4">
         <div class="card">
@@ -105,7 +108,8 @@
 
   <h4>My completed Appointments:</h4><br><br>
     <div class ="row">
-      <% @user_appointments.each do |appointment| %>
+      <% a = @user_appointments.sort_by {|appointment| appointment.appointment_date}.reverse %>
+      <% a.each do |appointment| %>
         <% if appointment.status == "complete" %>
           <div class="col s4">
             <div class="card">
@@ -132,4 +136,3 @@
         <% end %>
       <% end %>
     </div>
-    

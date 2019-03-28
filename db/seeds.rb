@@ -27,3 +27,7 @@ dog12 = Dog.create(image: "https://i.imgur.com/oqJCGvT.jpg", name: "Tyson", bree
   Appointment.create(walker_id: rand(5), dog_id: rand(6..12), appointment_date: Date.new(2019, rand(1..12), rand(1..28)), walk_duration: [30, 60, 90].sample, notes: "none", status: ["open", "scheduled", "complete"].sample, appointment_time: "09:00 AM", tokens: rand(1..3))
   Appointment.create(walker_id: rand(6..10), dog_id: rand(5), appointment_date: Date.new(2019, rand(1..12), rand(1..28)), walk_duration: [30, 60, 90].sample, notes: "none", status: ["open", "scheduled", "complete"].sample, appointment_time: "09:00 AM", tokens: rand(1..3))
 end
+
+50.times do
+  Appointment.create(walker_id: nil, dog_id: rand(1..12), appointment_date: Date.new(2019, rand(1..12), rand(1..28)), walk_duration: [30, 60, 90].sample, notes: "none", status: "open", appointment_time: "09:00 AM", tokens: rand(1..3)) 
+end
