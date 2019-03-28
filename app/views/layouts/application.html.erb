@@ -12,11 +12,11 @@
     <%= javascript_include_tag 'timepicker' %>
   </head>
 
-  <body>
+  <body class="layout-body">
     <nav>
-    <div class="nav-wrapper black darken-1">
+    <div class="nav-wrapper">
     <% if current_user %>
-    <a href="/" class="brand-logo">WeWalk</a>
+    <a href="/" class="brand-logo">wewalk</a>
     <ul class="right">
 
       <li><%= link_to current_user.username, user_path(current_user.id), :method => :get %></li>
@@ -35,7 +35,7 @@
     </div>
   </body>
   <footer class="page-footer">
-        <div class="container">
+        <!-- <div class="container"> -->
           <div class="row">
             <div class="col l6 s12">
               <h5 class="white-text">WeWalk not WeWork</h5>

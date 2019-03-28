@@ -42,7 +42,6 @@ class AppointmentsController < ApplicationController
           @params_day << param.to_i
         end
       end
-
       if params[:duration].nil?
         @params_duration = [30, 60, 90]
       else
@@ -50,8 +49,6 @@ class AppointmentsController < ApplicationController
           @params_duration << param.to_i
         end
       end
-
-
       @open_appointments = Appointment.all.select do |appointment|
         appointment.status == "open" && @params_day.include?(appointment.appointment_date.wday) && @params_duration.include?(appointment.walk_duration) && appointment.appointment_date > Time.now
       end

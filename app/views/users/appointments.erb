@@ -1,5 +1,5 @@
-<h3> Appointments for my Dog(s):</h3>
 
+<h3> Appointments for my Dog(s):</h3>
 
 <div class="divider"></div>
 <h4>Open Appointments</h4>
@@ -50,8 +50,8 @@
                       <li>Walker:
                         <% if !appointment.walker.nil?   %>
                         <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
-                      <li>Appointment Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
-                      <li>Appointment Time: <%= appointment.appointment_time %></li>
+                      <li>Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
+                      <li>Time: <%= appointment.appointment_time %></li>
                       <li>Walk Duration: <%= appointment.walk_duration %></li>
                       <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
                       <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
@@ -83,8 +83,8 @@
               <li>Walker:
                 <% if !appointment.walker.nil?   %>
                 <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
-              <li>Appointment Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
-              <li>Appointment Time: <%= appointment.appointment_time %></li>
+              <li>Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
+              <li>Time: <%= appointment.appointment_time %></li>
               <li>Walk Duration: <%= appointment.walk_duration %></li>
               <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
               <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
@@ -116,8 +116,8 @@
                   <li>Walker:
                     <% if !appointment.walker.nil?   %>
                     <%= link_to appointment.walker.first_name, user_path(appointment.walker_id) %><% end %></li>
-                  <li>Appointment Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
-                  <li>Appointment Time: <%= appointment.appointment_time %></li>
+                  <li>Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
+                  <li>Time: <%= appointment.appointment_time %></li>
                   <li>Walk Duration: <%= appointment.walk_duration %></li>
                   <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
                   <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li><br>
@@ -132,3 +132,4 @@
         <% end %>
       <% end %>
     </div>
+    
