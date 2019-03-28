@@ -33,6 +33,7 @@ class User < ApplicationRecord
 
   def init
     self.token_balance ||= 0
+    self.image ||= "https://cdn.iconscout.com/icon/free/png-256/avatar-375-456327.png"
   end
 
 end
