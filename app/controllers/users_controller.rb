@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
+  after_action :update_token_balance, only: [:show]
 
   def home
     render :home
@@ -96,6 +97,19 @@ class UsersController < ApplicationController
       end
     end
     all_reviews
+  end
+
+  def update_token_balance
+    @user = User.find(params[:id])
+    tokens = 0
+    my_completed_appointments.each do |appointment|
+      if appointment.dog.user.id == @user.id
+        tokens -= appointment.tokens
+      elsif appointment.walker_id == @user.id
+        tokens += appointment.tokens
+      end
+    end
+    @user.update(token_balance: tokens)
   end
 
 

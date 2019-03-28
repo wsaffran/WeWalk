@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
   # use only necessary ones
+
   resources :users do
-    resources :reviews
+    resources :reviews, only: [:new, :create, :destroy]
   end
+
 
   root to: 'users#home'
 

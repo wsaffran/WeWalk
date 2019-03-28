@@ -3,14 +3,12 @@
   <h1 id="username"><%= @dog.name %></h1>
   </div>
   <img src="https://i.imgur.com/kgIFYme.jpg.png" alt="Avatar" class="avatar">
-  </head>
 
 <ul>
   <li>Name: <%= @dog.name %></li>
   <li>Owner: <%= link_to @dog.user.first_name, "/users/#{@dog.user_id}" %></li>
   <li>Breed: <%= @dog.breed %></li>
   <li>Age: <%= @dog.age %></li>
-  <li>Hypo Allergenic: <%= @dog.hypo_allergenic %></li>
   <li>Care Information: <%= @dog.care_info %></li>
 
 </ul>
