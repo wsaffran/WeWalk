@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     find_user
     @all_reviews = all_reviews
     @can_leave_review = can_leave_review?
-    @feed = my_completed_appointments.reverse
+    @feed = my_completed_appointments.reverse[0..6]
     render :show
   end
 
@@ -116,7 +116,13 @@ class UsersController < ApplicationController
   # ALL FOR FEED
 
   def my_completed_appointments
-    find_user_appointments.select do |appointment|
+    a = []
+    Appointment.all.each do |appointment|
+      if appointment.dog.user.id == User.find(params[:id]).id || appointment.walker_id == User.find(params[:id]).id
+        a << appointment
+      end
+    end
+    a.select do |appointment|
       appointment.status == "complete"
     end.sort_by {|appointment| appointment.appointment_date}
   end
