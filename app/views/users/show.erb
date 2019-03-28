@@ -4,7 +4,7 @@
 
 <head>
 <div class="show_title">
-  <h1 id="username"><%= "#{@user.first_name} " "#{@user.last_name}" %></h1>
+  <h1 id="username-home"><%= "#{@user.first_name} " "#{@user.last_name}" %></h1>
 </div>
 
 
@@ -62,13 +62,12 @@
     <ul>
       <h3>Dogs</h3>
         <% @user.dogs.each do |dog| %>
-
-            <img src="https://i.imgur.com/kgIFYme.jpg" alt="Avatar-dog" class="avatar-dog"></a>
           <li>
-            <%=link_to dog.name, dog_path(dog.id) %>
-              <% end %>
+            <%= link_to dog_path(dog.id) do %>
+            <img src="https://i.imgur.com/kgIFYme.jpg" alt="Avatar-dog" class="avatar-dog">
+            <% end %>
           </li>
-
+          <% end %>
     </ul>
   </div>
 
