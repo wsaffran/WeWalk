@@ -67,7 +67,7 @@
         <% @user.dogs.each do |dog| %>
           <li>
             <%= link_to dog_path(dog.id) do %>
-            <img src="https://i.imgur.com/kgIFYme.jpg" alt="Avatar-dog" class="avatar-dog">
+            <img src="<%= dog.image %>" alt="Avatar-dog" class="avatar-dog">
             <% end %>
           </li>
           <% end %>
@@ -83,14 +83,15 @@
 </div><br><br>
 <!-- STATS-->
 <div class="divider"></div>
-
+<h4 id="h4-side-user-info">My Summary:</h4>
   <% if current_user.username != "Admin" %>
-    <p>Total Dog Walks: <%= @total_walkee_count %></p>
-    <p>Total Dogs Walked: <%= @total_walked_count %></p>
-    <p>Total Tokens Gained: <%= @total_gained_coins %></p>
-    <p>Total Tokens Spent: <%= @total_spent_coins %></p>
+  <div class="stats-side-user">
+  Total Dog Walks: <%= @total_walkee_count %><br>
+  Total Dogs Walked: <%= @total_walked_count %><br>
+  Total Tokens Gained: <%= @total_gained_coins %><br>
+  Total Tokens Spent: <%= @total_spent_coins %><br>
   <% end %>
-
+  </div>
   <% if current_user.username == "Admin" %>
     <p>Total Users: <%= @total_users %></p>
     <p>Open Appointments: <%= @open_appointments %></p>
