@@ -81,29 +81,7 @@
 
 
 <!-- FEED-->
-<ul>
-  <% @feed.each do |appointment| %>
 
-    <% if appointment.dog.user.id == @user.id %>
-
-      <% if appointment.tokens == 1 %>
-        <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %>: You paid <%= link_to User.find(appointment.walker_id).username, user_path(appointment.walker_id) %> <%= appointment.tokens %> token for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
-      <% else %>
-        <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %>: You paid <%= link_to User.find(appointment.walker_id).username, user_path(appointment.walker_id) %> <%= appointment.tokens %> tokens for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
-      <% end %>
-
-    <% elsif appointment.walker_id == @user.id %>
-
-      <% if appointment.tokens == 1 %>
-        <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %><%= link_to User.find(appointment.dog.user.id).username, user_path(appointment.dog.user.id) %> paid you <%= appointment.tokens %> token for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
-      <% else %>
-        <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %><%= link_to User.find(appointment.dog.user.id).username, user_path(appointment.dog.user.id) %> paid you <%= appointment.tokens %> tokens for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
-      <% end %>
-
-    <% end %>
-
-  <% end %>
-</ul>
 
 <!-- -->
 
@@ -115,6 +93,46 @@
 
 <!-- REVIEWS START HERE -->
 <div class="col s8">
+
+
+
+  <table>
+  <thead>
+    <tr>
+        <th>My recent activity</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+      <% @feed.each do |appointment| %>
+  <tr>
+      <td>
+            <% if appointment.dog.user.id == @user.id %>
+              <% if appointment.tokens == 1 %>
+                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %>: You paid <%= link_to User.find(appointment.walker_id).username, user_path(appointment.walker_id) %> <%= appointment.tokens %> token for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
+              <% else %>
+                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %>: You paid <%= link_to User.find(appointment.walker_id).username, user_path(appointment.walker_id) %> <%= appointment.tokens %> tokens for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
+              <% end %>
+
+            <% elsif appointment.walker_id == @user.id %>
+
+              <% if appointment.tokens == 1 %>
+                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %> <%= link_to User.find(appointment.dog.user.id).username, user_path(appointment.dog.user.id) %> paid you <%= appointment.tokens %> token for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
+              <% else %>
+                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %><%= link_to User.find(appointment.dog.user.id).username, user_path(appointment.dog.user.id) %> paid you <%= appointment.tokens %> tokens for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
+              <% end %>
+
+            <% end %>
+            </td>
+
+                </tr>
+      <% end %>
+
+  </tbody>
+</table>
 
 <h3>Reviews</h3>
   <!-- VALIDATE WHO CAN SEE REVIEW (if we completed an appointment together)-->
@@ -133,6 +151,8 @@
     <% end %>
   </ul>
   <div class="divider"></div>
+
+
 <!-- right side column div -->
 </div>
 

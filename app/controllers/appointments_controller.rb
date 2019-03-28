@@ -51,13 +51,13 @@ class AppointmentsController < ApplicationController
       end
       @open_appointments = Appointment.all.select do |appointment|
         appointment.status == "open" && @params_day.include?(appointment.appointment_date.wday) && @params_duration.include?(appointment.walk_duration) && appointment.appointment_date > Time.now
-      end
+      end.sort_by {|appointment| appointment.appointment_date}
 
     else
 
     @open_appointments = Appointment.all.select do |appointment|
       appointment.status == "open" && appointment.appointment_date > Time.now
-    end
+    end.sort_by {|appointment| appointment.appointment_date}
   end
 
     render :open_appointments
