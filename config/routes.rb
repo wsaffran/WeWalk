@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # use only necessary ones
   resources :users do
     resources :reviews
   end
