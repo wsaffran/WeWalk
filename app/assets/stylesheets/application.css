@@ -45,7 +45,7 @@
   padding-bottom: 20px;
 }
 
-#username{
+#username-home{
   color: #F4F3F6;
   text-align: center;
   position: bottom;
@@ -199,8 +199,14 @@ left: 0px;
   background-color: #2D3E73;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 20px;
 }
 
+.img-card {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
 
 /* .button{
   background-color: #63C4DE;
