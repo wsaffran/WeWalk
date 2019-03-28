@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @all_reviews = all_reviews
     all_stats
     @can_leave_review = can_leave_review?
-    @feed = my_completed_appointments.reverse[0..6]
+    @feed = my_completed_appointments.reverse[0..8]
     render :show
   end
 
