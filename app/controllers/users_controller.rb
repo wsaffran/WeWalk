@@ -119,7 +119,7 @@ class UsersController < ApplicationController
   def my_completed_appointments
     a = []
     Appointment.all.each do |appointment|
-      if appointment.dog.user.id == User.find(params[:id]).id || appointment.walker_id == User.find(params[:id]).id
+      if (appointment.dog.user.id == User.find(params[:id]).id || appointment.walker_id == User.find(params[:id]).id) && appointment.appointment_date < Time.now
         a << appointment
       end
     end
@@ -155,7 +155,7 @@ class UsersController < ApplicationController
   def open_appointments
     count = 0
     Appointment.all.each do |appointment|
-      if appointment.status == "open"
+      if appointment.status == "open" && appointment.appointment_date < Time.now
         count += 1
       end
     end
@@ -165,7 +165,7 @@ class UsersController < ApplicationController
   def scheduled_appointments
     count = 0
     Appointment.all.each do |appointment|
-      if appointment.status == "scheduled"
+      if appointment.status == "scheduled" && appointment.appointment_date < Time.now
         count += 1
       end
     end
@@ -175,7 +175,7 @@ class UsersController < ApplicationController
   def closed_appointments
     count = 0
     Appointment.all.each do |appointment|
-      if appointment.status == "closed"
+      if appointment.status == "closed" && appointment.appointment_date < Time.now
         count += 1
       end
     end
@@ -205,7 +205,7 @@ class UsersController < ApplicationController
   def walkee_closed_appointments
     appointments = []
     Appointment.all.each do |appointment|
-      if current_user.id == appointment.dog.user.id && appointment.status == "complete"
+      if current_user.id == appointment.dog.user.id && appointment.status == "complete" && appointment.appointment_date < Time.now
         appointments << appointment
       end
     end
@@ -223,7 +223,7 @@ class UsersController < ApplicationController
   def walked_closed_appointments
     appointments = []
     Appointment.all.each do |appointment|
-      if current_user.id == appointment.walker_id && appointment.status == "complete"
+      if current_user.id == appointment.walker_id && appointment.status == "complete" && appointment.appointment_date < Time.now
         appointments << appointment
       end
     end
@@ -241,7 +241,7 @@ class UsersController < ApplicationController
   def total_gained_coins
     tokens = 0
     walked_closed_appointments.each do |appointment|
-      if appointment.tokens != nil
+      if appointment.tokens != nil && appointment.appointment_date < Time.now
         tokens += appointment.tokens
       end
     end
@@ -251,7 +251,7 @@ class UsersController < ApplicationController
   def total_spent_coins
     tokens = 0
     walkee_closed_appointments.each do |appointment|
-      if appointment.tokens != nil
+      if appointment.tokens != nil && appointment.appointment_date < Time.now
         tokens += appointment.tokens
       end
     end

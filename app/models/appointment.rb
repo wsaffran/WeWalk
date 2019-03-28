@@ -5,5 +5,4 @@ class Appointment < ApplicationRecord
 
   validates :dog_id, :appointment_date, :walk_duration, :notes, :appointment_time, :presence => true
 
-
 end

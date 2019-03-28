@@ -33,9 +33,12 @@
 
   <%= f.label :state %>
   <%= f.select(:state, us_states, prompt: true) %><br>
-  
+
   <%= f.label :dob %>
   <%= f.date_field :dob %><br>
+
+  <%= f.label "Image (optional)" %>
+  <%= f.text_field :image %>
 
   <%= f.submit %>
 
