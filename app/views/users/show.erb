@@ -39,6 +39,9 @@
         <li>Date of Birth: <%= Date.parse(@user.dob.to_s) %></li>
         <% end %><br>
       </div>
+      <div class="token_balance">
+        <li>Token Balance: <%= @user.token_balance %></li>
+      </div>
 
       <div class="action btn waves-effect waves-light actions white">
         <span class= "white-text">
