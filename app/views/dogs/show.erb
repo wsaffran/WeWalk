@@ -14,6 +14,6 @@
 </ul>
 
 
-<% if @dog.user_id == current_user %>
+<% if @dog.user_id == current_user.id %>
   <%= link_to "Edit", "/dogs/#{@dog.id}/edit" %>
 <% end %>
