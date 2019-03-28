@@ -2,8 +2,6 @@
 <html>
 <div class="row">
 
-
-
 <head>
 <div class="show_title">
   <h1 id="username"><%= "#{@user.first_name} " "#{@user.last_name}" %></h1>
@@ -13,11 +11,21 @@
 <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-375-456327.png" alt="Avatar" class="avatar">
 </head>
 
+<div class="divider"></div>
+
+  <h5>Section 1</h5>
+  <p>Stuff</p>
+</div>
+
 <body>
-  <div class="col s6">
+<div class="col s6">
+<div class="divider"></div>
+<div class="section">
 <div class="user_info">
+
+    <!-- /********USER-INFO-SECTION*************/ -->
   <ul>
-    <h3>User Info</h3>
+    <h4>User Info</h4>
       <div class="user_address">
         <li>Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %></li>
       </div>
@@ -36,19 +44,28 @@
       <br><br>
       </div>
   </ul>
-
+  <div class="action btn waves-effect waves-light actions white">
+    <span class= "white-text">
+    <%= button_to "Delete Account", "/login", {method: :destroy}%>
+  <div class="divider"></div>
 </div>
+</div>
+  <div class="divider"></div>
+
+
+  <!-- /********USER-DOG-SECTION*************/ -->
+
   <div class="col s6">
   <div class="dogs">
     <ul>
       <h3>Dogs</h3>
         <% @user.dogs.each do |dog| %>
-
           <img src="https://i.imgur.com/kgIFYme.jpg" alt="Avatar-dog" class="avatar-dog">
           <li><%= link_to dog.name, dog_path(dog.id) %></li>
         <% end %>
     </ul>
   </div>
+
 
 
 <div class="action btn waves-effect waves-light actions white">
@@ -58,19 +75,8 @@
 
 </div>
 
-
-
-
-<div class="action btn waves-effect waves-light actions white">
-  <span class= "white-text">
-  <%= button_to "Delete Account", "/login", {method: :destroy}%>
 </div><br><br>
-
-</div>
-</body>
-</html>
-
-
+<div class="divider"></div>
 <h3>Reviews</h3>
 <!-- VALIDATE WHO CAN SEE REVIEW (if we completed an appointment together)-->
 <% if @can_leave_review %>
@@ -84,3 +90,8 @@
     <li><%= User.find(review.reviewer_id).username %></li><br>
   <% end %>
 </ul>
+
+
+</div>
+</body>
+</html>
