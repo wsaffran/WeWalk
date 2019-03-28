@@ -11,7 +11,10 @@
 <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-375-456327.png" alt="Avatar" class="avatar">
 </head>
 
-
+<img src="http://i.imgur.com/aUSiZ12.png" class="coin-header">
+<div class="balance-header"><h4>
+ <%= @user.token_balance %></h4>
+</div>
 
 
 <body>
@@ -34,11 +37,9 @@
       <div class="user_dob">
         <% if @user.dob != nil %>
         <li>Date of Birth: <%= Date.parse(@user.dob.to_s) %></li>
-        <% end %>
+        <% end %><br>
       </div>
-      <div class="token_balance">
-        <li>Token Balance: <%= @user.token_balance %></li>
-      </div>
+
       <div class="action btn waves-effect waves-light actions white">
         <span class= "white-text">
         <%= button_to "Edit my information", "/users/#{@user.id}/edit", {method: :get}%>
@@ -53,6 +54,7 @@
 </div>
 </div>
   <div class="divider"></div>
+
 
 
   <!-- /********USER-DOG-SECTION*************/ -->
@@ -109,8 +111,8 @@
 
       <% @feed.each do |appointment| %>
   <tr>
-      <td>
-            <% if appointment.dog.user.id == @user.id %>
+      <td> <img src="http://i.imgur.com/aUSiZ12.png" class="icon-coin">
+              <% if appointment.dog.user.id == @user.id %>
               <% if appointment.tokens == 1 %>
                 <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %>: You paid <%= link_to User.find(appointment.walker_id).username, user_path(appointment.walker_id) %> <%= appointment.tokens %> token for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
               <% else %>
