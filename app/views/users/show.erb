@@ -1,16 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
 <div class="show_title">
-  <h1><%= @user.name %></h1>
+  <h1 id="username"><%= "#{@user.first_name} " "#{@user.last_name}" %></h1>
 </div>
 
 
+<img src="https://cdn.iconscout.com/icon/free/png-256/avatar-375-456327.png" alt="Avatar" class="avatar">
+</head>
+
+
+
+
+<body>
+  <div class="row">
+<div class="col s4 ">
+  <div class="profile-left-color">
+
+
+  <br><br>
+<div class="divider"></div>
+<div class="section">
 <div class="user_info">
-  <div class="user_address">
-    Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %>
-  </div>
-  <div class="user_dob">
-    Date of Birth: <%= @user.dob %>
-  </div>
-  <div class="token_balance">
-    Token Balance: <%= @user.token_balance %>
-  </div>
+
+    <!-- /********USER-INFO-SECTION*************/ -->
+  <ul>
+    <h4>User Info</h4>
+      <div class="user_address">
+        <li>Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %></li>
+      </div>
+      <div class="user_dob">
+        <% if @user.dob != nil %>
+        <li>Date of Birth: <%= Date.parse(@user.dob.to_s) %></li>
+        <% end %>
+      </div>
+      <div class="token_balance">
+        <li>Token Balance: <%= @user.token_balance %></li>
+      </div>
+      <div class="action btn waves-effect waves-light actions white">
+        <span class= "white-text">
+        <%= button_to "Edit my information", "/users/#{@user.id}/edit", {method: :get}%>
+      </div>
+      <br><br>
+      </div>
+  </ul>
+  <div class="action btn waves-effect waves-light actions white">
+    <span class= "white-text">
+    <%= button_to "Delete Account", "/login", {method: :destroy}%>
+  <div class="divider"></div>
 </div>
+</div>
+  <div class="divider"></div>
+
+
+  <!-- /********USER-DOG-SECTION*************/ -->
+
+
+  <div class="dogs">
+    <ul>
+      <h3>Dogs</h3>
+        <% @user.dogs.each do |dog| %>
+
+            <img src="https://i.imgur.com/kgIFYme.jpg" alt="Avatar-dog" class="avatar-dog"></a>
+          <li>
+            <%=link_to dog.name, dog_path(dog.id) %>
+              <% end %>
+          </li>
+
+    </ul>
+  </div>
+
+
+
+<div class="action btn waves-effect waves-light actions white">
+  <span class= "white-text">
+  <%= button_to "Register New Dog", new_dog_path, {method: :get} %>
+</div><br><br>
+
+
+
+</div><br><br>
+</div>
+<br><br>
+<div class="divider"></div>
+
+<!-- REVIEWS START HERE -->
+<div class="col s8">
+
+<h3>Reviews</h3>
+  <!-- VALIDATE WHO CAN SEE REVIEW (if we completed an appointment together)-->
+  <% if @can_leave_review %>
+    <%= button_to "Leave Review", new_user_review_path(params[:id]), {method: :get} %>
+  <% end %>
+
+  <ul>
+    <% @all_reviews.each do |review| %>
+      <li><%= review.rating %></li>
+      <li><%= review.content %></li>
+      <li><%= User.find(review.reviewer_id).username %></li><br>
+    <% end %>
+  </ul>
+  <div class="divider"></div>
+<!-- right side column div -->
+</div>
+
+<!-- row div end below -->
+</div>
+
+</body>
+</html>

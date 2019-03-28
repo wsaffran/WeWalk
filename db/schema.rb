@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_185151) do
+ActiveRecord::Schema.define(version: 2019_03_27_201916) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer "walker_id"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2019_03_25_185151) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "appointment_time"
+    t.string "status"
+    t.integer "tokens"
   end
 
   create_table "dogs", force: :cascade do |t|
@@ -34,8 +36,17 @@ ActiveRecord::Schema.define(version: 2019_03_25_185151) do
     t.integer "user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "content"
+    t.integer "reviewer_id"
+    t.integer "reviewee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
     t.string "address"
     t.string "city"
     t.string "state"
@@ -44,6 +55,9 @@ ActiveRecord::Schema.define(version: 2019_03_25_185151) do
     t.integer "token_balance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "last_name"
+    t.string "username"
   end
 
 end

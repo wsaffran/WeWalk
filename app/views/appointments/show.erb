@@ -1,0 +1,55 @@
+<h3>Your Appointment Information:</h3>
+
+<ul>
+  <li>Status: <%= @appointment.status %></li>
+  <li>Appointment Number: <%= @appointment.id %></li>
+  <li>Dog: <%= link_to @appointment.dog.name, '/dogs/#{@appointment.dog.id}' %></li>
+  <li>Dog's Owner: <%= link_to @appointment.dog.user.first_name, "/users/#{@appointment.dog.user.id}" %></li>
+  <li>Walker:
+    <% if !@appointment.walker.nil?   %>
+      <%= link_to @appointment.walker.first_name, user_path(@appointment) %>
+    <% end %></li>
+  <li>Appointment Date: <%= @appointment.appointment_date.strftime("%B %d, %Y") %></li>
+  <li>Appointment Time: <%= @appointment.appointment_time %></li>
+  <li>Walk Duration: <%= @appointment.walk_duration %></li>
+  <li>Notes: <%= @appointment.notes %> </li>
+    <li>Tokens: <%= @appointment.tokens %></li><br><br>
+
+
+  <% if @appointment.status != "complete" %>
+    <% if @appointment.dog.user.id == current_user.id %>
+    <div class="action btn waves-effect waves-light actions white">
+      <span class= "white-text">
+    <%= button_to 'Edit', edit_appointment_path(@appointment), {method: :get} %>
+    </div>
+    <% end %>
+
+    <% if @appointment.dog.user.id == current_user.id %>
+    <div class="action btn waves-effect waves-light actions white">
+      <span class= "white-text">
+    <%= button_to 'Delete Appointment', appointment_path(@appointment), {method: :delete} %>
+    </div>
+    <% end %>
+  <% end %>
+
+
+  <% if @appointment.walker_id != nil%>
+    <% if (@appointment.dog.user.id == current_user.id || @appointment.walker_id == current_user.id) && @appointment.status != "complete" %>
+    <div class="action btn waves-effect waves-light actions white">
+      <span class= "white-text">
+      <%= button_to 'Cancel Appointment', {:controller => "appointments", :action => "status_to_open", :id => @appointment.id, :walker_id => nil, :status=> "scheduled"} , {:method=>:patch} %>
+      </div>
+    <% end %>
+    <% if @appointment.dog.user.id == current_user.id && @appointment.status != "complete"%>
+    <div class="action btn waves-effect waves-light actions white">
+      <span class= "white-text">
+    <%= button_to 'Mark as Completed', { :controller => "appointments", :action => "status_to_complete", :id => @appointment.id}, {:method=>:patch} %>
+    </div>
+    <% end %>
+  <% end %>
+
+  <div class="action btn waves-effect waves-light actions white">
+    <span class= "white-text">
+  <%= button_to "Back to My Appointments", "/users/#{current_user.id}/appointments", {method: :get} %>
+  </div>
+</ul>

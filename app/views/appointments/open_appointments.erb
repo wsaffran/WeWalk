@@ -1,0 +1,103 @@
+<h3>Open appointments:</h3>
+
+<div class="divider"></div>
+<div class="filter-open-appointments">
+
+<!-- ***********FILTER-START********************** -->
+
+Filter by Days:
+  <form action="/appointments/open">
+     <p>
+       <label>
+         <input type="checkbox" name ="days[]" value = "1" />
+        </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "2" />
+          <span>Tuesday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "3" />
+          <span>Wednesday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "4" />
+          <span>Thursday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "5" />
+          <span>Friday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name ="days[]" value = "6" />
+          <span>Saturday</span><br>
+         </label>
+
+        <label>
+          <input type="checkbox" name = "days[]" value = "0" />
+          <span>Sunday</span><br><br>
+        </label>
+        Filter by walk duration:
+        <label>
+          <input type="checkbox" name = "duration[]" value = 30 />
+          <span>30 Minutes</span><br>
+        </label>
+
+        <label>
+          <input type="checkbox" name = "duration[]" value = 60 />
+          <span>60 Minutes</span><br>
+        </label>
+
+        <label>
+          <input type="checkbox" name = "duration[]" value = 90 />
+          <span>90 Minutes</span><br>
+        </label>
+
+     </p>
+
+      <%= submit_tag 'Filter' %>
+ <%= button_to 'Clear', '/appointments/open', {method: :get} %>
+   </form>
+
+
+</div>
+
+<!-- ***********FILTER-END********************** -->
+
+
+<div class="open-margin">
+</div>
+<div class ="row">
+  <% @open_appointments.each do |appointment| %>
+    <% if appointment.dog.user.id != current_user.id %>
+    <div class="col s4">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://i.imgur.com/kgIFYme.jpg">
+          <div class="card-content">
+          Appointment Number: <%= appointment.id %><br><br>
+          <li>Date: <%= appointment.appointment_date.strftime("%B %d, %Y") %></li>
+          <li>Time: <%= appointment.appointment_time %></li>
+          <li>Dog: <%= link_to appointment.dog.name, "/dogs/#{appointment.dog.id}" %></li>
+          <li>Dog's Owner: <%= link_to appointment.dog.user.first_name, "/users/#{appointment.dog.user.id}" %></li>
+
+          <li>Walk Duration: <%=appointment.walk_duration %></li><br>
+            <div class="action btn waves-effect waves-light actions white">
+              <span class= "white-text">
+          <%= button_to 'Walk This Dog', {:controller => "appointments", :action => "status_to_scheduled", :id => appointment.id }, {:method=>:patch} %></div><br><br>
+          <div class="action btn waves-effect waves-light actions white">
+            <span class= "white-text">
+          <%= button_to 'View', appointment_path(appointment.id), {:method=>:get} %>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+</div>
