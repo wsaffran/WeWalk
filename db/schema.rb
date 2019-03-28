@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_27_201916) do
+ActiveRecord::Schema.define(version: 2019_03_28_151247) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer "walker_id"
@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(version: 2019_03_27_201916) do
     t.string "name"
     t.string "breed"
     t.integer "age"
-    t.boolean "hypo_allergenic"
     t.string "care_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.string "image"
   end
 
   create_table "reviews", force: :cascade do |t|
