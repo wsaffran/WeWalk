@@ -50,6 +50,11 @@
 
   <div class="action btn waves-effect waves-light actions white">
     <span class= "white-text">
-  <%= button_to "Back to My Appointments", "/users/#{current_user.id}/appointments", {method: :get} %>
+  <%= button_to "My Appointments", "/users/#{current_user.id}/appointments", {method: :get} %>
+  </div>
+
+  <div class="action btn waves-effect waves-light actions white">
+    <span class= "white-text">
+  <%= button_to "Open Appointments", "/appointments/open", {method: :get} %>
   </div>
 </ul>
