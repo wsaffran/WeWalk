@@ -11,7 +11,10 @@
 <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-375-456327.png" alt="Avatar" class="avatar">
 </head>
 
-
+<img src="http://i.imgur.com/aUSiZ12.png" class="coin-header">
+<div class="balance-header"><h4>
+ <%= @user.token_balance %></h4>
+</div>
 
 
 <body>
@@ -27,17 +30,17 @@
 
     <!-- /********USER-INFO-SECTION*************/ -->
   <ul>
-    <h4>User Info</h4>
+    <h4 id="h4-side-user-info">User Info</h4>
       <div class="user_address">
-        <li>Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %></li>
+        Address: <%= @user.address %> <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %>
       </div>
       <div class="user_dob">
         <% if @user.dob != nil %>
-        <li>Date of Birth: <%= Date.parse(@user.dob.to_s) %></li>
+        <li>Date of Birth: <%= @user.dob.strftime("%B %d, %Y") %></li>
         <% end %>
       </div>
       <div class="token_balance">
-        <li>Token Balance: <%= @user.token_balance %></li>
+        <li>Token Balance: <%= @user.token_balance %></li><br>
       </div>
       <div class="action btn waves-effect waves-light actions white">
         <span class= "white-text">
@@ -60,7 +63,7 @@
 
   <div class="dogs">
     <ul>
-      <h3>Dogs</h3>
+      <h4>My Dogs:</h4>
         <% @user.dogs.each do |dog| %>
           <li>
             <%= link_to dog_path(dog.id) do %>
@@ -76,6 +79,27 @@
 <div class="action btn waves-effect waves-light actions white">
   <span class= "white-text">
   <%= button_to "Register New Dog", new_dog_path, {method: :get} %>
+
+</div><br><br>
+<!-- STATS-->
+<div class="divider"></div>
+
+  <% if current_user.username != "Admin" %>
+    <p>Total Dog Walks: <%= @total_walkee_count %></p>
+    <p>Total Dogs Walked: <%= @total_walked_count %></p>
+    <p>Total Tokens Gained: <%= @total_gained_coins %></p>
+    <p>Total Tokens Spent: <%= @total_spent_coins %></p>
+  <% end %>
+
+  <% if current_user.username == "Admin" %>
+    <p>Total Users: <%= @total_users %></p>
+    <p>Open Appointments: <%= @open_appointments %></p>
+    <p>Scheduled Appointments: <%= @scheduled_appointments %></p>
+    <p>Closed Appointments: <%= @closed_appointments %></p>
+    <p>User With Most Coins: <%= @user_with_most_coins.username %> Coins: <%= @user_with_most_coins.token_balance %></p>
+  <% end %>
+
+
 </div><br><br>
 
 
@@ -87,7 +111,7 @@
 
 
 </div><br><br>
-</div>
+
 <br><br>
 <div class="divider"></div>
 
@@ -112,17 +136,17 @@
       <td>
             <% if appointment.dog.user.id == @user.id %>
               <% if appointment.tokens == 1 %>
-                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %>: You paid <%= link_to User.find(appointment.walker_id).username, user_path(appointment.walker_id) %> <%= appointment.tokens %> token for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
+                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %>:   You paid <%= link_to User.find(appointment.walker_id).username, user_path(appointment.walker_id) %> <%= appointment.tokens %> token for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
               <% else %>
-                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %>: You paid <%= link_to User.find(appointment.walker_id).username, user_path(appointment.walker_id) %> <%= appointment.tokens %> tokens for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
+                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %>:   You paid <%= link_to User.find(appointment.walker_id).username, user_path(appointment.walker_id) %> <%= appointment.tokens %> tokens for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
               <% end %>
 
             <% elsif appointment.walker_id == @user.id %>
 
               <% if appointment.tokens == 1 %>
-                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %> <%= link_to User.find(appointment.dog.user.id).username, user_path(appointment.dog.user.id) %> paid you <%= appointment.tokens %> token for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
+                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %><%=":   " %> <%= link_to User.find(appointment.dog.user.id).username, user_path(appointment.dog.user.id) %> paid you <%= appointment.tokens %> token for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
               <% else %>
-                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %><%= link_to User.find(appointment.dog.user.id).username, user_path(appointment.dog.user.id) %> paid you <%= appointment.tokens %> tokens for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
+                <li><%= link_to appointment.appointment_date.strftime("%B %d, %Y"), appointment_path(appointment.id) %><%=":   " %> <%= link_to User.find(appointment.dog.user.id).username, user_path(appointment.dog.user.id) %> paid you <%= appointment.tokens %> tokens for walking <%= link_to Dog.find(appointment.dog_id).name, dog_path(appointment.dog_id) %></li>
               <% end %>
 
             <% end %>
@@ -152,9 +176,10 @@
   </ul>
   <div class="divider"></div>
 
-
 <!-- right side column div -->
 </div>
+
+
 
 <!-- row div end below -->
 </div>

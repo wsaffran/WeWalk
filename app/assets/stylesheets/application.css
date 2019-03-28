@@ -90,6 +90,25 @@ h3 {
 
 } */
 
+#h4-side-user-info{
+  color: #F4F3F6;
+}
+
+.user_address {
+  color: #F4F3F6
+}
+.user_dob {
+  color: #F4F3F6
+}
+.token_balance{
+  color: #F4F3F6
+}
+
+.dogs {
+  color: #F4F3F6
+}
+
+
 body {
   background-color: white;
 }
@@ -207,6 +226,47 @@ left: 0px;
   height: 15vw;
   object-fit: cover;
 }
+
+.icon-coin {
+  /* vertical-align: middle; */
+  width: 25px;
+  height: 25px;
+  float: left;
+  /* border-radius: 50%;
+  margin-top: -100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto */
+}
+
+.icon-coin-side {
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+  .coin-header {
+    float: right;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: -90px;
+    margin-left: -20px;
+    display: block;
+    /* margin-left: auto;
+    margin-right: auto */
+  }
+
+  .balance-header {
+    float: right;
+    margin-top: -10px;
+    display: block;
+    margin-right: -50px;
+    display: block;
+    font-weight: bold;
+  }
+
 
 /* .button{
   background-color: #63C4DE;
