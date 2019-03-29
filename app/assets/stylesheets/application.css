@@ -354,6 +354,10 @@ left: 0px;
   margin-top: -70px;
 }
 
+.right {
+  padding-right: 25px;
+}
+
 /* .button{
   background-color: #63C4DE;
 } */

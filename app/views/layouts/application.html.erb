@@ -25,7 +25,12 @@
       <li><%= link_to "My Appointments", "/users/#{current_user.id}/appointments" %></li>
       <li><%= link_to "New Appointment", "/appointments/new" %></li>
     </ul>
-    <% end %>
+    <% else %>
+      <a href="/" class="brand-logo">wewalk</a>
+      <ul class="right">
+        <li><%= link_to "Login", login_path %></li>
+      </ul>
+      <% end %>
      </div>
      </nav>
 
