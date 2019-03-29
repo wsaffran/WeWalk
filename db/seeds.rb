@@ -1,5 +1,5 @@
 
-user1 = User.create(username: "will", first_name: "Will", last_name: "will", password: "123456", address: "145 Turkey Ln", city: "CSH", state: "NY", zip_code: 11724, dob: Date.new(2007, 11, 10))
+user1 = User.create(username: "will", first_name: "Will", last_name: "Saffran", password: "123456", address: "145 Turkey Ln", city: "CSH", state: "NY", zip_code: 11724, dob: Date.new(2007, 11, 10))
 user2 = User.create(username: "abbyparker", first_name: "Abby", last_name: "Parker", password: "123456", address: "145 Turkey Ln", city: "CSH", state: "NY", zip_code: 11724, dob: Date.new(2007, 11, 10))
 user3 = User.create(username: "alexgibson", first_name: "Alex", last_name: "Gibson", password: "123456", address: "145 Turkey Ln", city: "CSH", state: "NY", zip_code: 11724, dob: Date.new(2007, 11, 10))
 user4 = User.create(username: "fredbloggs", first_name: "Fred", last_name: "Bloggs", password: "123456", address: "145 Turkey Ln", city: "CSH", state: "NY", zip_code: 11724, dob: Date.new(2007, 11, 10))
@@ -32,10 +32,19 @@ end
   Appointment.create(walker_id: nil, dog_id: rand(1..12), appointment_date: Date.new(2019, rand(1..12), rand(1..28)), walk_duration: [30, 60, 90].sample, notes: "none", status: "open", appointment_time: "09:00 AM", tokens: rand(1..3))
 end
 
-15.times do
+10.times do
   Review.create(rating: rand(3..5), content: "great dogs!", reviewer_id: rand(1..5), reviewee_id: rand(6..10))
 end
 
-15.times do
+10.times do
+  Review.create(rating: rand(3..5), content: "lovely!", reviewer_id: rand(1..5), reviewee_id: rand(6..10))
+end
+
+
+10.times do
   Review.create(rating: rand(4..5), content: "awesome!",reviewer_id: rand(6..10), reviewee_id: rand(1..5))
+end
+
+10.times do
+  Review.create(rating: rand(4..5), content: "so sweet!",reviewer_id: rand(6..10), reviewee_id: rand(1..5))
 end
