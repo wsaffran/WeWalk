@@ -40,7 +40,6 @@ end
   Review.create(rating: rand(3..5), content: "lovely!", reviewer_id: rand(1..5), reviewee_id: rand(6..10))
 end
 
-
 10.times do
   Review.create(rating: rand(4..5), content: "awesome!",reviewer_id: rand(6..10), reviewee_id: rand(1..5))
 end
