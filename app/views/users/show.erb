@@ -156,8 +156,6 @@
 
 <h3 id="h3-reviews">Reviews</h3>
   <!-- VALIDATE WHO CAN SEE REVIEW (if we completed an appointment together)-->
-
-  <ul>
     <% @all_reviews.each do |review| %>
     <div class="card-panel">
       <p class="review-card">Rating: <%= review.rating %> stars!</p>
@@ -165,11 +163,13 @@
       <p class="review-card">- <%= link_to User.find(review.reviewer_id).username, user_path(User.find(review.reviewer_id).id) %></p><br>
       <% if review.reviewer_id == current_user.id %>
 
-        <li id="review-button"><%= button_to "Delete Review", user_review_path(review.id), {method: :delete} %></li><br></div>
+        <li id="review-button"><%= button_to "Delete Review", user_review_path(review.id), {method: :delete} %></li><br>
+
 
       <% end %>
+      </div>
     <% end %>
-  </ul>
+
 
   <% if @can_leave_review %>
     <%= button_to "Leave Review", new_user_review_path(params[:id]), {method: :get} %>
