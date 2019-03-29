@@ -123,13 +123,19 @@ h3 {
 }
 
 .user_address {
-  color: #F4F3F6
+  color: #F4F3F6;
+  font-weight: 100;
+  line-height: 25px;
 }
 .user_dob {
-  color: #F4F3F6
+  color: #F4F3F6;
+  font-weight: 100;
+  line-height: 25px;
 }
 .token_balance{
-  color: #F4F3F6
+  color: #F4F3F6;
+  font-weight: 100;
+  line-height: 25px;
 }
 
 .dogs {
@@ -138,6 +144,7 @@ h3 {
 
 .stats-side-user {
   color: #F4F3F6;
+  font-weight: 100;
   line-height: 25px;
 }
 
@@ -216,11 +223,12 @@ left: 0px;
   background-color: #2D3E73;
    border: none;
    color: white;
+   font-weight: 100;
    padding: 5px 80px;
    text-align: center;
    text-decoration: none;
    display: inline-block;
-   font-size: 16px;
+   font-size: 18px;
    margin: 35px 2px 0px 0px;
    border-radius: 6px;
    cursor: pointer;
@@ -310,7 +318,41 @@ left: 0px;
   margin-top: -20px;
 }
 
+.inline-container-transactions {
+  background-color: #D57557;
+  height: 400px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: -20px;
+}
 
+#h3-reviews {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.card-panel{
+  background-color: #2D3E73;
+  padding-left: 25px;
+  padding-top: 5px;
+  height: 130px;
+}
+
+.review-card {
+  color: #F4F3F6;
+}
+
+#right {
+  overflow: auto;
+  height: 100%;
+  padding-left: 10px;
+  max-height:100%;
+}
+
+#review-button {
+  float: right;
+  margin-top: -70px;
+}
 
 /* .button{
   background-color: #63C4DE;
