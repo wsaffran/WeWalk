@@ -16,11 +16,13 @@
 
  @import "materialize";
 
+
 .brand-logo {
   position: absolute;
   left:50px;
   top:0;
   padding: 10px;
+
 }
 
 .page-footer {
