@@ -52,8 +52,8 @@ class UsersController < ApplicationController
 
   def destroy
     find_user
-     @user.destroy
-    redirect_to "/"
+    @user.destroy
+    redirect_to '/'
   end
 
   def appointments

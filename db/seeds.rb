@@ -19,8 +19,8 @@ dog6 = Dog.create(image: "https://i.imgur.com/8QQPv.jpg", name: "Aspirin", breed
 dog7 = Dog.create(image: "https://i.imgur.com/caOfQ.jpg", name: "Astro", breed: "mut", age: 3, care_info: "none", user_id: 7)
 dog8 = Dog.create(image: "https://i.imgur.com/Tlyk9.png", name: "Chad", breed: "mut", age: 3, care_info: "none", user_id: 8)
 dog9 = Dog.create(image: "https://i.imgur.com/oqJCGvT.jpg", name: "Coder", breed: "mut", age: 3, care_info: "none", user_id: 9)
-dog10 = Dog.create(image: "https://i.imgur.com/KhYHiPY.jpg", name: "Dash", breed: "mut", age: 3, care_info: "none", user_id: 10)
-dog11 = Dog.create(image: "https://i.imgur.com/3NEapy2.jpg", name: "Marlin", breed: "mut", age: 3, care_info: "none", user_id: 10)
+dog10 = Dog.create(image: "https://i.imgur.com/KhYHiPY.jpg", name: "Dash", breed: "mut", age: 3, care_info: "none", user_id: 8)
+dog11 = Dog.create(image: "https://i.imgur.com/3NEapy2.jpg", name: "Marlin", breed: "mut", age: 3, care_info: "none", user_id: 9)
 dog12 = Dog.create(image: "https://i.imgur.com/oqJCGvT.jpg", name: "Tyson", breed: "mut", age: 3, care_info: "none", user_id: 10)
 
 100.times do
