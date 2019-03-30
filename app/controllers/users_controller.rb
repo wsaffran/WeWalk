@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized, only: [:new, :create]
-  after_action :update_token_balance, only: [:show]
+  skip_before_action :authorized, only: [:home, :new, :create]
+  before_action :update_token_balance, only: [:show]
+
+
 
   def home
     render :home
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     find_user
-    @all_reviews = all_reviews
+    @all_reviews = all_reviews.reverse
     all_stats
     @can_leave_review = can_leave_review?
     @feed = my_completed_appointments.reverse[0..8]
@@ -50,8 +52,8 @@ class UsersController < ApplicationController
 
   def destroy
     find_user
-     @user.destroy
-    redirect_to "/"
+    @user.destroy
+    redirect_to '/'
   end
 
   def appointments
@@ -97,7 +99,7 @@ class UsersController < ApplicationController
         all_reviews << review
       end
     end
-    all_reviews
+    all_reviews.sort_by {|review| review.created_at}
   end
 
   def update_token_balance

@@ -117,7 +117,7 @@ class AppointmentsController < ApplicationController
 
   def destroy
     find_appointment.destroy
-    redirect_to '/'
+    redirect_to "/users/#{current_user.id}/appointments"
   end
 
   private

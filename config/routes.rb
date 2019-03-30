@@ -23,9 +23,9 @@ Rails.application.routes.draw do
 
   get '/users/:id/appointments', to: 'users#appointments', as: 'user_appointments'
 
-  resources :users, only: [:show, :new, :create, :edit, :update, :delete]
-  resources :appointments, only: [:new, :create, :show, :edit, :update]
-  resources :dogs, only: [:new, :create, :show, :edit, :update]
+  resources :users, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :appointments, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :dogs, only: [:new, :create, :show, :edit, :update, :destroy]
 
   #login
   get '/login', to: 'sessions#new', as: 'login'

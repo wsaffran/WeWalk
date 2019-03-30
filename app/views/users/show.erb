@@ -51,7 +51,7 @@
   </ul>
   <div class="action btn waves-effect waves-light actions white">
     <span class= "white-text">
-    <%= button_to "Delete Account", "/login", {method: :delete}%>
+    <%= button_to "Delete Account", '/', {method: :delete}%>
   <div class="divider"></div>
 </div>
 </div>
@@ -107,25 +107,20 @@
 
 <!-- FEED-->
 
-
-<!-- -->
-
-
 </div><br><br>
 
 <br><br>
 <div class="divider"></div>
 
-<!-- REVIEWS START HERE -->
+<!-- TRANSACTIONS START HERE -->
+
+
 <div class="col s8">
-
-
-
+  <section id="right">
   <table>
   <thead>
     <tr>
         <th>My recent activity</th>
-
     </tr>
   </thead>
 
@@ -159,28 +154,35 @@
   </tbody>
 </table>
 
-<h3>Reviews</h3>
+<h3 id="h3-reviews">Reviews</h3>
   <!-- VALIDATE WHO CAN SEE REVIEW (if we completed an appointment together)-->
+    <% @all_reviews.each do |review| %>
+    <div class="card-panel">
+      <p class="review-card">Rating: <%= review.rating %> stars!</p>
+      <p class="review-card"><%= review.content %></p>
+      <p class="review-card">- <%= link_to User.find(review.reviewer_id).username, user_path(User.find(review.reviewer_id).id) %></p><br>
+      <% if review.reviewer_id == current_user.id %>
+
+        <div class="review-button"><%= button_to "Delete Review", user_review_path(review.id), {method: :delete} %></div><br>
+
+
+      <% end %>
+      </div>
+    <% end %>
+
+
   <% if @can_leave_review %>
     <%= button_to "Leave Review", new_user_review_path(params[:id]), {method: :get} %>
-  <% end %>
+  <% end %><br>
 
-  <ul>
-    <% @all_reviews.each do |review| %>
-      <li>Rating: <%= review.rating %> stars!</li>
-      <li><%= review.content %></li>
-      <li>- <%= link_to User.find(review.reviewer_id).username, user_path(User.find(review.reviewer_id).id) %></li><br>
-      <% if review.reviewer_id == current_user.id %>
-        <li><%= button_to "Delete Review", user_review_path(review.id), {method: :delete} %></li><br>
-      <% end %>
-    <% end %>
-  </ul>
   <div class="divider"></div>
 
 <!-- right side column div -->
 </div>
 
 
+
+</section>
 
 <!-- row div end below -->
 </div>

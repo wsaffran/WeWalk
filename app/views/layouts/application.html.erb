@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= favicon_link_tag asset_path('https://www.wework.com/public/favicon-32x32.png') %>
+
+
     <title>WeWalk</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -20,12 +23,17 @@
     <ul class="right">
 
       <li><%= link_to current_user.username, user_path(current_user.id), :method => :get %></li>
-      <li><%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%></li>
       <li><%= link_to "Open Appointments", "/appointments/open" %></li>
       <li><%= link_to "My Appointments", "/users/#{current_user.id}/appointments" %></li>
       <li><%= link_to "New Appointment", "/appointments/new" %></li>
+      <li><%= link_to "Logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete%></li>
     </ul>
-    <% end %>
+    <% else %>
+      <a href="/" class="brand-logo">wewalk</a>
+      <ul class="right">
+        <li><%= link_to "Login", login_path %></li>
+      </ul>
+      <% end %>
      </div>
      </nav>
 
@@ -38,7 +46,7 @@
         <!-- <div class="container"> -->
           <div class="row">
             <div class="col l6 s12">
-              <h5 class="white-text">WeWalk not WeWork</h5>
+              <h5 class="white-text">wewalk</h5>
               <p class="grey-text text-lighten-4">Not affiliated with wework</p>
             </div>
             <div class="col l4 offset-l2 s12">
