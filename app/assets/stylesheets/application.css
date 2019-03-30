@@ -341,7 +341,7 @@ left: 0px;
 }
 
 .review-card {
-  color: #F4F3F6;
+  color: #F4F3F6; 
 }
 
 #right {
@@ -351,13 +351,13 @@ left: 0px;
   height: 600px;
 }
 
-#review-button {
+.review-button {
   float: right;
   margin-top: -70px;
 }
 
 .right {
-  padding-right: 25px;
+
 }
 
 /* .button{

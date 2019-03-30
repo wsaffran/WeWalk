@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:home, :new, :create]
-  after_action :update_token_balance, only: [:show]
+  before_action :update_token_balance, only: [:show]
 
 
 

@@ -32,6 +32,11 @@ end
   Appointment.create(walker_id: nil, dog_id: rand(1..12), appointment_date: Date.new(2019, rand(1..12), rand(1..28)), walk_duration: [30, 60, 90].sample, notes: "none", status: "open", appointment_time: "09:00 AM", tokens: rand(1..3))
 end
 
+25.times do
+  Appointment.create(walker_id: rand(6..10), dog_id: rand(1..5), appointment_date: Date.new(2019, rand(1..3), rand(1..28)), walk_duration: [30, 60, 90].sample, notes: "none", status: "complete", appointment_time: "09:00 AM", tokens: rand(1..3))
+  Appointment.create(walker_id: rand(1..5), dog_id: rand(6..10), appointment_date: Date.new(2019, rand(1..3), rand(1..28)), walk_duration: [30, 60, 90].sample, notes: "none", status: "complete", appointment_time: "10:00 AM", tokens: rand(1..3))
+end
+
 10.times do
   Review.create(rating: rand(3..5), content: "great dogs!", reviewer_id: rand(1..5), reviewee_id: rand(6..10))
 end

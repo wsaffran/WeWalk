@@ -163,7 +163,7 @@
       <p class="review-card">- <%= link_to User.find(review.reviewer_id).username, user_path(User.find(review.reviewer_id).id) %></p><br>
       <% if review.reviewer_id == current_user.id %>
 
-        <li id="review-button"><%= button_to "Delete Review", user_review_path(review.id), {method: :delete} %></li><br>
+        <div class="review-button"><%= button_to "Delete Review", user_review_path(review.id), {method: :delete} %></div><br>
 
 
       <% end %>
